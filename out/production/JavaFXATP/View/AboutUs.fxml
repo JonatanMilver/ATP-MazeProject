@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="863.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label styleClass="headers" layoutX="249.0" layoutY="14.0" text="ABOUT US" textFill="WHITE">
+         <font>
+            <Font name="Microsoft Sans Serif" size="26.0" />
+         </font>
+      </Label>
+      <Label styleClass="headers" layoutX="40.0" layoutY="51.0" text="OUR GOAL" textFill="WHITE">
+         <font>
+            <Font name="Microsoft Sans Serif" size="20.0" />
+         </font></Label>
+      <Text fill="#e2e2e2" fontSmoothingType="LCD" layoutX="40.0" layoutY="98.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="We want to challenge you by solving our mazes. However, whenever you need some help or hints you can get it by one click." wrappingWidth="607.552734375">
+         <font>
+            <Font name="Microsoft Sans Serif" size="19.0" />
+         </font>
+      </Text>
+      <Label styleClass="headers" layoutX="40.0" layoutY="139.0" text="THE ALGORITHMS" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Text fill="#e0e0e0" layoutX="40.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The algorithm we use in order to make an interesting and challenging maze is the common Depth First Search graph based algorithm." wrappingWidth="591.5527502786426">
+         <font>
+            <Font name="Microsoft Sans Serif" size="19.0" />
+         </font></Text>
+      <Text fill="#e0e0e0" layoutX="40.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="However, our solving logic uses some more algorithms in order to solve the mazes. We use Breadth First Search and Best First Search in addition to the Depth First Search, all graph based algorithms." wrappingWidth="569.130859375">
+         <font>
+            <Font name="Microsoft Sans Serif" size="19.0" />
+         </font></Text>
+      <Label styleClass="headers" layoutX="40.0" layoutY="330.0" text="OUR TEAM" textFill="WHITE">
+         <font>
+            <Font name="Microsoft Sans Serif" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="149.0" fitWidth="194.0" layoutX="29.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@JonatanMilver.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="29.0" layoutY="524.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jonatan">
+         <font>
+            <Font name="Microsoft Sans Serif" size="19.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="30.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CEO and FOUNDER">
+         <font>
+            <Font name="Microsoft Sans Serif" size="19.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="356.0" layoutY="524.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guy">
+         <font>
+            <Font name="Microsoft Sans Serif" size="19.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="356.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FOUNDER and CEO">
+         <font>
+            <Font name="Microsoft Sans Serif" size="19.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="333.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

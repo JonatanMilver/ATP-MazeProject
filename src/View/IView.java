@@ -8,4 +8,5 @@ public interface IView {
     void handleSaveButton();
     void handleAboutButton();
     void handlePropertiesButton();
+    void handleHelpButton();
 }

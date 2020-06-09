@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+    <top>
+        <VBox prefHeight="38.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu>
+                            <graphic>
+                                <Label mnemonicParsing="false" styleClass="menuBars" text="File" />
+                            </graphic>
+                            <items>
+                                <MenuItem id="newGameButton" mnemonicParsing="false" onAction="#handleNewButton" styleClass="menuBars" text="New" />
+                                <MenuItem id="saveGameButton" mnemonicParsing="false" onAction="#handleSaveButton" styleClass="menuBars" text="Save" />
+                                <MenuItem id="loadGameButton" mnemonicParsing="false" onAction="#handleLoadButton" styleClass="menuBars" text="Load" />
+                            </items>
+                        </Menu>
+                        <Menu>
+                            <graphic>
+                                <Label mnemonicParsing="false" styleClass="menuBars" text="Options" />
+                            </graphic>
+                            <items>
+                                <MenuItem id="propertiesButton" mnemonicParsing="false" onAction="#handlePropertiesButton" styleClass="menuBars" text="Properties" />
+                            </items>
+                        </Menu>
+                        <Menu>
+                            <graphic>
+                                <Label id="exitButton" fx:id="exitButton" mnemonicParsing="false" onMouseClicked="#handleExitButton" styleClass="menuBars" text="Exit" />
+                            </graphic>
+                        </Menu>
+                        <Menu>
+                            <graphic>
+                                <Label id="helpButton" mnemonicParsing="false" onMouseClicked="#handleHelpButton" styleClass="menuBars" text="Help" />
+                            </graphic>
+                        </Menu>
+                        <Menu>
+                            <graphic>
+                                <Label id="aboutButton" mnemonicParsing="false" onMouseClicked="#handleAboutButton" styleClass="menuBars" text="About" />
+                            </graphic>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </children>
+        </VBox>
+    </top>
+</BorderPane>
