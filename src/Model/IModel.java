@@ -2,10 +2,11 @@ package Model;
 
 
 import algorithms.mazeGenerators.Maze;
+import algorithms.search.Solution;
 
 public interface IModel {
 
     Maze generateMaze(int rows, int columns);
-    void solveMaze(Maze maze);
+    Solution solveMaze(Maze maze);
 
 }

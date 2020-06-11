@@ -31,9 +31,10 @@ MenuBar{
 .hints > *.label.content{
     -fx-font-size: 14px;
     -fx-font-weight: bold;
+    -fx-text-fill: white;
 }
 .hints *.header-panel{
-    -fx-background-color: #a59c31;
+    -fx-background-color: #97C3D8;
 }
 .hints *.header-panel *.label{
     -fx-font-size: 18px;
