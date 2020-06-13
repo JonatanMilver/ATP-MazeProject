@@ -1,5 +1,6 @@
 package View;
 
+import algorithms.mazeGenerators.Maze;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -9,18 +10,26 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class MazeDisplayer extends Canvas {
+    Maze maze1;
     int[][] maze;
 
-    public void drawMaze(int [][] maze)
+//    public void drawMaze(int [][] maze)
+//    {
+//        this.maze = maze;
+//        draw();
+//    }
+    public void drawMaze(Maze maze)
     {
-        this.maze = maze;
+        this.maze1 = maze;
         draw();
     }
 
     public void draw()
     {
+        maze = maze1.getMazeArr();
         if( maze!=null)
         {
+
             double canvasHeight = getHeight();
             double canvasWidth = getWidth();
             int row = maze.length;
@@ -39,6 +48,12 @@ public class MazeDisplayer extends Canvas {
 //            } catch (FileNotFoundException e) {
 //                System.out.println("There is no file....");
 //            }
+            Image goalImage = null;
+            try {
+                goalImage = new Image(new FileInputStream("C:\\Users\\yonym\\Documents\\GitHub\\ATP-MazeProject\\src\\View\\Resources\\shapelined-qawemGipVPk-unsplash.jpg"));
+            } catch (FileNotFoundException e) {
+                System.out.println("There is no file....");
+            }
 
             for(int i=0;i<row;i++)
             {
@@ -54,6 +69,18 @@ public class MazeDisplayer extends Canvas {
                         }else{
                             graphicsContext.drawImage(wallImage,w,h,cellWidth,cellHeight);
                         }
+                    }
+                    else if(i == maze1.getGoalPosition().getRowIndex()*2 && j == maze1.getGoalPosition().getColumnIndex()*2){
+                        double height = i * cellHeight;
+                        double width = j * cellWidth;
+//                        System.out.println(i + " first is i " + j);
+//                        System.out.println(height);
+//                        System.out.println(width);
+//                        System.out.println(cellWidth);
+//                        System.out.println(cellHeight);
+//                        System.out.println(maze1.getGoalPosition().getRowIndex());
+//                        System.out.println(maze1.getGoalPosition().getColumnIndex());
+                        graphicsContext.drawImage(goalImage,width,height,cellWidth,cellHeight);
                     }
 
                 }
@@ -71,4 +98,5 @@ public class MazeDisplayer extends Canvas {
 
         }
     }
+
 }
