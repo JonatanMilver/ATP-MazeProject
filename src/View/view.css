@@ -42,3 +42,12 @@ MenuBar{
     -fx-fill: #292929;
 }
 
+/*MazeDisplayer{*/
+/*    -fx-effect: innershadow(gaussian, #039ed3, 10, 1.0, 0, 0);*/
+/*    -fx-border-color: black;*/
+/*}*/
+BorderPane{
+    -fx-border-color: black;
+    -fx-border-width: 5px;
+}
+

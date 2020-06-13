@@ -4,9 +4,11 @@ import ViewModel.MyViewModel;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
@@ -19,18 +21,20 @@ public class MyViewController implements IView{
     @FXML
     public Label exitButton;
     @FXML
-    public static Stage mainStage;
+    public MenuItem newGameButton;
+    @FXML
+    public BorderPane mainBorderPane;
+    @FXML
+    public BorderPane menuBorderPane;
 
 
 
-    public MyViewController(Stage stage) throws IOException {
+
+    public MyViewController() throws IOException {
         this.viewModel = new MyViewModel();
-        mainStage = stage;
     }
 
     public void handleExitButton(){
-        viewModel.showMaze(5,10);
-        //viewModel.showSolution();
         Platform.exit();
     }
 
@@ -40,7 +44,9 @@ public class MyViewController implements IView{
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("NewPage.fxml"));
-            mainStage.setScene(new Scene(root , 500, 450));
+            Stage s =(Stage) exitButton.getScene().getWindow();
+            s.setScene(new Scene(root , 500, 450));
+            s.setMaximized(true);
 
         } catch (IOException e) {
             e.printStackTrace();

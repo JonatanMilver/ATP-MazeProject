@@ -23,14 +23,10 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("MyView.fxml"));
         primaryStage.setTitle("Let's Maze");
         primaryStage.setScene(new Scene(root, 500, 450));
+
         primaryStage.show();
     }
 
-    public void changeScene(String fxml, Stage primaryStage) throws IOException {
-        Parent pane = FXMLLoader.load(getClass().getResource(fxml));
-
-        primaryStage.getScene().setRoot(pane);
-    }
 
 
     public static void main(String[] args) {
