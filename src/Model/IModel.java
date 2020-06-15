@@ -6,7 +6,7 @@ import algorithms.search.Solution;
 
 public interface IModel {
 
-    Maze generateMaze(int rows, int columns);
-    Solution solveMaze(Maze maze);
+    void generateMaze(int rows, int columns);
+    void solveMaze(Maze maze);
 
 }

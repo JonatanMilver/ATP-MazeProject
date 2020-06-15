@@ -1,30 +1,39 @@
 package View;
 
+import Model.MyModel;
+import ViewModel.MyViewModel;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.awt.*;
+
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-//        MyViewController viewController = new MyViewController();
-        Parent root = FXMLLoader.load(getClass().getResource("MyView.fxml"));
+//        FXMLLoader loader = FXMLLoader.load(getClass().getResource("MyView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MyView.fxml"));
+        Parent root = loader.load();
+        MyModel model = new MyModel();
+        MyViewModel viewModel = new MyViewModel();
+        MyViewController view = loader.getController();
+        model.addObserver(viewModel);
+        viewModel.addObserver(view);
+
         primaryStage.setTitle("Let's Maze");
-        primaryStage.setScene(new Scene(root, 500, 450));
+//        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+//        int height = gd.getDisplayMode().getHeight();
+//        int width = gd.getDisplayMode().getWidth();
+        primaryStage.setScene(new Scene(root, 501, 402));
+//        primaryStage.setMaximized(true);
 
         primaryStage.show();
+
+
     }
 
 

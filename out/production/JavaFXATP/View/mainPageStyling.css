@@ -1,0 +1,20 @@
+AnchorPane{
+    /*-fx-background-image: url("Resources/steven-kamenar-MMJx78V7xS8-unsplash.jpg");*/
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+
+Button:hover{
+    -fx-background-color: #008CBA;
+    -fx-text-fill: white;
+    -fx-border-radius: 12px;
+}
+Button{
+    -fx-background-color: blank;
+    -fx-text-fill: black;
+    -fx-border-width: 2px;
+    -fx-border-color: #008CBA;
+    -fx-border-radius: 12px;
+}
+
