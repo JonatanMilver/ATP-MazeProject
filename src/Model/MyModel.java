@@ -9,19 +9,22 @@ import Server.ServerStrategyGenerateMaze;
 import Client.IClientStrategy;
 import Server.ServerStrategySolveSearchProblem;
 import algorithms.search.*;
+import javafx.beans.property.IntegerProperty;
 
 import java.io.*;
 import java.net.InetAddress;
-import java.util.ArrayList;
+import java.util.Observable;
 
-public class MyModel implements IModel {
 
+public class MyModel extends Observable implements IModel {
+
+    private Maze maze;
+    private Solution solution;
 
     @Override
-    public Maze generateMaze(int rows, int columns) {
+    public void generateMaze(int rows, int columns) {
         Server server = new Server(5400, 1000, new ServerStrategyGenerateMaze());
         server.start();
-        final Maze[] returnedMaze = new Maze[1];
         try{
             Client client = new Client(InetAddress.getLocalHost(), 5400, new IClientStrategy() {
                 public void clientStrategy(InputStream inputStream, OutputStream outputStream){
@@ -36,9 +39,9 @@ public class MyModel implements IModel {
                         InputStream is = new MyDecompressorInputStream(new ByteArrayInputStream(compressedMaze));
                         byte[] decompressedMaze = new byte[998013 /*CHANGE SIZE ACCORDING TO YOU MAZE SIZE*/]; //allocating byte[] for the decompressed maze -
                         is.read(decompressedMaze); //Fill decompressedMaze with bytes
-                        Maze maze = new Maze(decompressedMaze);
+                        maze = new Maze(decompressedMaze);
                        // maze.print();
-                        returnedMaze[0] = maze;
+
                     }
                     catch(IOException | ClassNotFoundException e){
                         e.printStackTrace();
@@ -50,15 +53,17 @@ public class MyModel implements IModel {
         catch (IOException e){
             e.printStackTrace();
         }
+        setChanged();
+        notifyObservers();
         server.stop();
-        return returnedMaze[0];
+
 
     }
 
 
 
     @Override
-    public Solution solveMaze(Maze maze) {
+    public void solveMaze(Maze maze) {
         Server server = new Server(5401, 1000, new ServerStrategySolveSearchProblem());
         server.start();
         final Solution[] theSolution = new Solution[1];
@@ -75,14 +80,7 @@ public class MyModel implements IModel {
 //                       maze.print();
                        toServer.writeObject(maze); //send maze to server
                        toServer.flush();
-                       Solution mazeSolution = (Solution) fromServer.readObject(); //read generated maze (compressed with MyCompressor) from server
-                       theSolution[0] = mazeSolution;
-//                       //Print Maze Solution retrieved from the server
-//                       System.out.println(String.format("Solution steps: %s", mazeSolution));
-//                       ArrayList<AState> mazeSolutionSteps = mazeSolution.getSolutionPath();
-//                       for (int i = 0; i < mazeSolutionSteps.size(); i++) {
-//                           System.out.println(String.format("%s. %s", i, mazeSolutionSteps.get(i).toString()));
-//                       }
+                       solution = (Solution) fromServer.readObject(); //read generated maze (compressed with MyCompressor) from server
                    } catch (Exception e) {
                        e.printStackTrace();
                    }
@@ -94,7 +92,41 @@ public class MyModel implements IModel {
             e.printStackTrace();
         }
         server.stop();
-        return theSolution[0];
+    }
 
+    public Maze getMaze() {
+        return maze;
+    }
+
+    public void setMaze(Maze maze) {
+        this.maze = maze;
+    }
+
+    public Solution getSolution() {
+        return solution;
+    }
+
+    public void setSolution(Solution solution) {
+        this.solution = solution;
+    }
+
+    public boolean canMove(String direction, String currentPlayerRow, String currentPlayerColumn) {
+        int currRow = Integer.parseInt(currentPlayerRow);
+        int currCol = Integer.parseInt(currentPlayerColumn);
+        if (direction.equals("UP")) {
+            return (currRow - 1 >= 0 && maze.getMazeArr()[currRow - 1][currCol] == 0);
+        }
+        else if(direction.equals("DOWN")){
+            return(currRow + 1 < maze.getMazeArr().length && maze.getMazeArr()[currRow+1][currCol] == 0);
+        }
+        else if(direction.equals("RIGHT")){
+            return(currCol + 1 < maze.getMazeArr()[0].length && maze.getMazeArr()[currRow][currCol+1] == 0);
+        }
+        else if(direction.equals("LEFT")){
+            return(currCol - 1 >= 0 && maze.getMazeArr()[currRow][currCol-1] == 0);
+        }
+        else{
+            return false;
+        }
     }
 }

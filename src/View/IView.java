@@ -1,5 +1,7 @@
 package View;
 
+import javafx.stage.Stage;
+
 public interface IView {
 
     void handleExitButton();
@@ -9,4 +11,5 @@ public interface IView {
     void handleAboutButton();
     void handlePropertiesButton();
     void handleHelpButton();
+    Stage newStage(String path , String title, int width , int height);
 }

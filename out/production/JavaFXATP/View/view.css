@@ -9,16 +9,17 @@
     -fx-effect: dropshadow(gaussian, black, 1.5, 2, 1.5, 2);
 }
 MenuBar{
-    -fx-background-color: rgba(76, 69, 182, 0.7) ;
+    -fx-background-color: #008CBA ;
     -fx-background-repeat: stretch;
     -fx-background-size: cover;
+    -fx-background-position: center center;
 }
 .menuBars{
     -fx-text-fill: white;
+
 }
 
 .menuBars:hover{
-    /*-fx-background-color: black;*/
     -fx-font-weight: bold;
 }
 
@@ -42,12 +43,24 @@ MenuBar{
     -fx-fill: #292929;
 }
 
-/*MazeDisplayer{*/
-/*    -fx-effect: innershadow(gaussian, #039ed3, 10, 1.0, 0, 0);*/
-/*    -fx-border-color: black;*/
-/*}*/
-BorderPane{
-    -fx-border-color: black;
-    -fx-border-width: 5px;
+.menu-button > .arrow-button {
+    -fx-padding: 0;
 }
+
+.menu-button > .arrow-button > .arrow {
+    -fx-padding: 0;
+}
+.menu-button1{
+    -fx-border-color: #4CAF50;
+    -fx-border-width: 1px;
+    -fx-border-radius: 1px;
+    -fx-background-color: white;
+}
+.menu-button1:hover{
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+
+
 
