@@ -14,6 +14,15 @@ public class MazeDisplayer extends Canvas {
     Maze maze;
     int[][] mazeArr;
 
+    private int playerRow;
+    private int playerColumn;
+
+    private String endImagePath = "C:\\Users\\Guyza\\OneDrive\\Documents\\GitHub\\ATP-MazeProject\\src\\View\\Resources\\shapelined-qawemGipVPk-unsplash.jpg";
+    //"C:\\Users\\yonym\\Documents\\GitHub\\ATP-MazeProject\\src\\View\\Resources\\shapelined-qawemGipVPk-unsplash.jpg"
+
+    private String playerImagePath = "C:\\Users\\Guyza\\OneDrive\\Documents\\GitHub\\ATP-MazeProject\\JonatanMilver.png";
+    //"C:\\Users\\yonym\\Documents\\GitHub\\ATP-MazeProject\\src\\View\\Resources\\JonatanMilver.png"
+
     public int getPlayerRow() {
         return playerRow;
     }
@@ -29,9 +38,6 @@ public class MazeDisplayer extends Canvas {
     public void setPlayerColumn(int playerColumn) {
         this.playerColumn = playerColumn;
     }
-
-    private int playerRow;
-    private int playerColumn;
 
     public Maze getMaze() {
         return maze;
@@ -80,7 +86,7 @@ public class MazeDisplayer extends Canvas {
 //            }
             Image goalImage = null;
             try {
-                goalImage = new Image(new FileInputStream("C:\\Users\\yonym\\Documents\\GitHub\\ATP-MazeProject\\src\\View\\Resources\\shapelined-qawemGipVPk-unsplash.jpg"));
+                goalImage = new Image(new FileInputStream(endImagePath));
             } catch (FileNotFoundException e) {
                 System.out.println("There is no file....");
             }
@@ -120,7 +126,7 @@ public class MazeDisplayer extends Canvas {
             double w_player = this.playerColumn * cellWidth;
             Image playerImage = null;
             try {
-                playerImage = new Image(new FileInputStream("C:\\Users\\yonym\\Documents\\GitHub\\ATP-MazeProject\\src\\View\\Resources\\JonatanMilver.png"));
+                playerImage = new Image(new FileInputStream(playerImagePath));
             } catch (FileNotFoundException e) {
                 System.out.println("There is no Image player....");
             }

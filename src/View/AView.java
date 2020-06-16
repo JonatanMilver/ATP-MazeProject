@@ -19,7 +19,8 @@ import java.util.Observer;
 public abstract class AView implements IView, Observer {
     protected Scene scene;
     protected Stage stage;
-    protected MyViewModel viewModel;
+//    protected MyViewModel viewModel = new MyViewModel();
+    protected MyViewModel viewModel = MyViewModel.getInstance();
 
 
 //    public AView(Scene scene, Stage stage, MyViewModel viewModel) {

@@ -19,7 +19,8 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MyView.fxml"));
         Parent root = loader.load();
         MyModel model = new MyModel();
-        MyViewModel viewModel = new MyViewModel();
+//        MyViewModel viewModel = new MyViewModel();
+        MyViewModel viewModel = MyViewModel.getInstance();
         MyViewController view = loader.getController();
         model.addObserver(viewModel);
         viewModel.addObserver(view);

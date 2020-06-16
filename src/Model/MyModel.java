@@ -60,8 +60,6 @@ public class MyModel extends Observable implements IModel {
 
     }
 
-
-
     @Override
     public void solveMaze(Maze maze) {
         Server server = new Server(5401, 1000, new ServerStrategySolveSearchProblem());
@@ -92,6 +90,11 @@ public class MyModel extends Observable implements IModel {
             e.printStackTrace();
         }
         server.stop();
+    }
+
+    @Override
+    public Maze getCurrentMaze() {
+        return maze;
     }
 
     public Maze getMaze() {
