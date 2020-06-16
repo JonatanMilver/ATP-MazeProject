@@ -213,6 +213,7 @@ public class NewPage extends AView implements Initializable {
         keyEvent.consume();
         System.out.println("player_row_position: " + player_row_position);
         System.out.println("player_col_position: " + player_col_position);
+        System.out.println();
     }
 
     private boolean canMove(String direction) {
