@@ -1,5 +1,6 @@
 package View;
 
+import algorithms.mazeGenerators.Maze;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +18,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.Observable;
 import java.util.ResourceBundle;
@@ -120,7 +123,30 @@ public class MyViewController extends AView implements Initializable {
 
     @Override
     public void handleSaveButton() {
+        FileChooser fileChooser = new FileChooser();
 
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("maze files (*.maze)", "*.maze");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        Maze mazeToSave = viewModel.getmaze();
+
+        File file = fileChooser.showSaveDialog(stage);
+
+        //need to check if person closes (X) the file chooser!!!
+        writeMazeToFile(mazeToSave , file.getPath());
+    }
+
+    private void writeMazeToFile(Maze mazeFromClient , String path) {
+        try {
+            FileOutputStream file = new FileOutputStream(path);
+            ObjectOutputStream oos = new ObjectOutputStream(file);
+            oos.writeObject(mazeFromClient);
+            oos.flush();
+            oos.close();
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

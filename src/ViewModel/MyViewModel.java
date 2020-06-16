@@ -1,9 +1,6 @@
 package ViewModel;
 
-import Model.IModel;
 import Model.MyModel;
-import View.AView;
-import View.NewPage;
 import algorithms.mazeGenerators.Maze;
 import algorithms.search.Solution;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,13 +15,21 @@ import java.util.Observer;
 
 
 public class MyViewModel extends Observable implements Observer {
+    private static MyViewModel vm = null;
     private MyModel model;
     public StringProperty playerCurrentRow = new SimpleStringProperty();
     public StringProperty playercurrentColumn = new SimpleStringProperty();
 
 
-    public MyViewModel() {
+    private MyViewModel() {
         this.model = new MyModel();
+    }
+
+    public static MyViewModel getInstance() {
+        if (vm == null){
+            vm = new MyViewModel();
+        }
+        return vm;
     }
 
     /**
@@ -70,13 +75,18 @@ public class MyViewModel extends Observable implements Observer {
         }
     }
 
-
     @Override
     public void update(java.util.Observable o, Object arg) {
 
 }
 
     public boolean canMove(String direction) {
-        return (model.canMove(direction, currentPlayerRow, currentPlayerColumn));
+//        System.out.println("Row: " + playerCurrentRow.getValue() + " Column: "+ playercurrentColumn.getValue());
+//        System.out.println("--------------------");
+        return (model.canMove(direction, playerCurrentRow.getValue(), playercurrentColumn.getValue()));
+    }
+
+    public Maze getmaze() {
+        return model.getMaze();
     }
 }

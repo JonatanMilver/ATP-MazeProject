@@ -1,12 +1,9 @@
 package View;
 
-import Model.MyModel;
-import ViewModel.MyViewModel;
 import algorithms.mazeGenerators.Maze;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,7 +12,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
@@ -29,23 +25,22 @@ public class NewPage extends AView implements Initializable {
     public TextField colText;
     public Button generateButton;
 
-//    public NewPage(Scene scene, Stage stage, MyViewModel viewModel) {
-//        super(scene, stage, viewModel);
-//    }
+    public MazeDisplayer mazeDisplayer;
+    public Button backToGenerate;
+    public BorderPane bPane;
+    public AnchorPane anchorPane;
+
+    public Label player_row_label = new Label();
+    public Label player_col_label = new Label();
+//    public int player_row_position;
+//    public int player_col_position;
 
 
     public MazeDisplayer getMazeDisplayer() {
         return mazeDisplayer;
     }
 
-    public MazeDisplayer mazeDisplayer;
-    public Button backToGenerate;
-    public BorderPane bPane;
-    public AnchorPane anchorPane;
-
-
-
-    private MyViewModel myViewModel;
+//    private MyViewModel myViewModel;
 
 
     public void changeToMazeScene(MouseEvent mouseEvent) {
@@ -74,6 +69,7 @@ public class NewPage extends AView implements Initializable {
             backToGenerate.setVisible(true);
             bPane.setVisible(true);
             drawmaze(rows, columns);
+            mouseClicked(null);
         }
     }
 
@@ -94,18 +90,19 @@ public class NewPage extends AView implements Initializable {
     }
 
     public void drawmaze(int rows, int columns) {
-        if(myViewModel == null){
-            myViewModel = new MyViewModel();
-        }
-        Maze mazeToGenerate = myViewModel.generateMaze(rows,columns);
+//        if(this.viewModel == null){
+////            myViewModel = MyViewModel.getInstance();
+//            System.out.println("SHHHHHHHHHHHHit!");
+//        }
+        Maze mazeToGenerate = viewModel.generateMaze(rows,columns);
         mazeToGenerate.print();
         mazeDisplayer.drawMaze(mazeToGenerate);
     }
 
     public void drawLoadedMaze(Maze maze){
-        if (mazeDisplayer == null){
-            mazeDisplayer = new MazeDisplayer();
-        }
+//        if (mazeDisplayer == null){
+//            mazeDisplayer = new MazeDisplayer();
+//        }
         maze.print();
         backToGenerate.setVisible(true);
         bPane.setVisible(true);
@@ -133,9 +130,10 @@ public class NewPage extends AView implements Initializable {
      * @param mazeFile File.
      */
     public void showLoadedMaze(File mazeFile){
-        if(myViewModel == null)
-            myViewModel = new MyViewModel();
-        Maze maze = myViewModel.loadMaze(mazeFile);
+//        if(myViewModel == null)
+//            myViewModel = new MyViewModel();
+//            myViewModel = MyViewModel
+        Maze maze = viewModel.loadMaze(mazeFile);
         drawLoadedMaze(maze);
     }
 
@@ -146,56 +144,80 @@ public class NewPage extends AView implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        viewModel.playerCurrentRow.bind(player_row_label.textProperty());
+        viewModel.playercurrentColumn.bind(player_col_label.textProperty());
+    }
 
+    public void set_player_position(int rowPosition , int colPosition){
+        mazeDisplayer.set_player_position(rowPosition , colPosition);
+        player_row_label.setText(String.valueOf(rowPosition));
+        player_col_label.setText(String.valueOf(colPosition));
     }
 
     public void keyPressed(KeyEvent keyEvent) {
-        int player_row_position = mazeDisplayer.getPlayerRow();
-        int player_col_position = mazeDisplayer.getPlayerColumn();
+//        System.out.println("getMazeDisplayer().getPlayerRow(): "+getMazeDisplayer().getPlayerRow());
+//        System.out.println("getMazeDisplayer().getPlayerColumn(): "+ getMazeDisplayer().getPlayerColumn());
+//        System.out.println("mazeDisplayer.getPlayerRow(): "+mazeDisplayer.getPlayerRow());
+//        System.out.println("mazeDisplayer.getPlayerColumn(): "+mazeDisplayer.getPlayerColumn());
+//        System.out.println("viewModel.playerCurrentRow: "+viewModel.playerCurrentRow.getValue());
+//        System.out.println("viewModel.playercurrentColumn: "+viewModel.playercurrentColumn.getValue());
+
+        int player_row_position = getMazeDisplayer().getPlayerRow();
+        int player_col_position = getMazeDisplayer().getPlayerColumn();
+
+        player_row_label.setText(String.valueOf(player_row_position));
+        player_col_label.setText(String.valueOf(player_col_position));
+
         switch (keyEvent.getCode()) {
             case UP:
                 if(canMove("UP")){
-                    mazeDisplayer.set_player_position(player_row_position - 1, player_col_position);
-                    break;
+//                    mazeDisplayer.set_player_position(player_row_position - 1, player_col_position);
+                    set_player_position(player_row_position - 1, player_col_position);
                 }
-
+                break;
             case DOWN:
                 if(canMove("DOWN")) {
-                    mazeDisplayer.set_player_position(player_row_position + 1, player_col_position);
-
-                    break;
+//                    mazeDisplayer.set_player_position(player_row_position + 1, player_col_position);
+                    set_player_position(player_row_position + 1, player_col_position);
                 }
+                break;
             case RIGHT:
                 if(canMove("RIGHT")) {
-                    mazeDisplayer.set_player_position(player_row_position, player_col_position + 1);
-                    break;
+//                    mazeDisplayer.set_player_position(player_row_position, player_col_position + 1);
+                    set_player_position(player_row_position, player_col_position + 1);
                 }
+                break;
             case LEFT:
                 if(canMove("LEFT")) {
-                    mazeDisplayer.set_player_position(player_row_position, player_col_position - 1);
-                    break;
+//                    mazeDisplayer.set_player_position(player_row_position, player_col_position - 1);
+                    set_player_position(player_row_position, player_col_position - 1);
                 }
-            case W:
-                mazeDisplayer.set_player_position(player_row_position - 1, player_col_position);
                 break;
-            case S:
-                mazeDisplayer.set_player_position(player_row_position + 1, player_col_position);
-                break;
-            case D:
-                mazeDisplayer.set_player_position(player_row_position, player_col_position + 1);
-                break;
-            case A:
-                mazeDisplayer.set_player_position(player_row_position, player_col_position - 1);
-                break;
+//            case W:
+//                mazeDisplayer.set_player_position(player_row_position - 1, player_col_position);
+//                break;
+//            case S:
+//                mazeDisplayer.set_player_position(player_row_position + 1, player_col_position);
+//                break;
+//            case D:
+//                mazeDisplayer.set_player_position(player_row_position, player_col_position + 1);
+//                break;
+//            case A:
+//                mazeDisplayer.set_player_position(player_row_position, player_col_position - 1);
+//                break;
             default:
-                mazeDisplayer.set_player_position(player_row_position, player_col_position);
+//                mazeDisplayer.set_player_position(player_row_position, player_col_position);
+                set_player_position(player_row_position, player_col_position);
 
         }
         keyEvent.consume();
+        System.out.println("player_row_position: " + player_row_position);
+        System.out.println("player_col_position: " + player_col_position);
+        System.out.println();
     }
 
     private boolean canMove(String direction) {
-        return myViewModel.canMove(direction);
+        return viewModel.canMove(direction);
     }
 
     public void mouseClicked(MouseEvent mouseEvent) {
