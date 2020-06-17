@@ -53,8 +53,8 @@ public class MyViewController extends AView implements Initializable {
 }
 
     private void getStage(){
-        if(exitButton != null){
-            stage =(Stage) exitButton.getScene().getWindow();
+        if(exitButton1 != null){
+            stage =(Stage) exitButton1.getScene().getWindow();
         }
         else if(mainWindowExitButton != null){
             stage =(Stage) mainWindowExitButton.getScene().getWindow();
@@ -64,11 +64,14 @@ public class MyViewController extends AView implements Initializable {
     public void handleNewButton() {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("NewPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("NewPage.fxml"));
+            root = loader.load();
+            NewPage newPage = loader.getController();
+            viewModel.addObserver(newPage);
             getStage();
             stage.setScene(new Scene(root , 500, 450));
-            stage.setMaximized(true);
-
+//            stage.setMaximized(true);
+            stage.setFullScreen(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,9 +97,11 @@ public class MyViewController extends AView implements Initializable {
                 root = loader.load();
 //                root = FXMLLoader.load(getClass().getResource("NewPage.fxml"));
                 getStage();
+
                 stage.setScene(new Scene(root , 500, 450));
                 stage.setMaximized(true);
                 NewPage newPageControls = loader.getController();
+                viewModel.addObserver(newPageControls);
                 newPageControls.showLoadedMaze(file);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -113,13 +118,7 @@ public class MyViewController extends AView implements Initializable {
         );
     }
 
-    private void openFile(File file) {
-//        try {
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-    }
+
 
     @Override
     public void handleSaveButton() {
@@ -128,7 +127,7 @@ public class MyViewController extends AView implements Initializable {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("maze files (*.maze)", "*.maze");
         fileChooser.getExtensionFilters().add(extFilter);
 
-        Maze mazeToSave = viewModel.getmaze();
+        Maze mazeToSave = viewModel.getMaze();
 
         File file = fileChooser.showSaveDialog(stage);
 

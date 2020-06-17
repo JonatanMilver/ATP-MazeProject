@@ -21,6 +21,49 @@ public class MyModel extends Observable implements IModel {
     private Maze maze;
     private Solution solution;
 
+    public void setMazeIsSolved(boolean mazeIsSolved) {
+        this.mazeIsSolved = mazeIsSolved;
+    }
+
+    private boolean mazeIsSolved;
+    private static MyModel myModel;
+    private int playerCurrentRow;
+    private int playerCurrentCol;
+
+    public int getPlayerCurrentRow() {
+        return playerCurrentRow;
+    }
+
+    public void setPlayerCurrentRow(int playerCurrentRow) {
+        this.playerCurrentRow = playerCurrentRow;
+    }
+
+    public int getPlayerCurrentCol() {
+        return playerCurrentCol;
+    }
+
+    public void setPlayerCurrentCol(int playerCurrentCol) {
+        this.playerCurrentCol = playerCurrentCol;
+    }
+
+
+
+    public boolean isMazeIsSolved() {
+        return mazeIsSolved;
+    }
+
+
+
+    private MyModel(){
+        mazeIsSolved = false;
+    }
+
+    public static MyModel getInstance(){
+        if(myModel == null)
+            myModel = new MyModel();
+        return myModel;
+    }
+
     @Override
     public void generateMaze(int rows, int columns) {
         Server server = new Server(5400, 1000, new ServerStrategyGenerateMaze());
@@ -40,6 +83,8 @@ public class MyModel extends Observable implements IModel {
                         byte[] decompressedMaze = new byte[998013 /*CHANGE SIZE ACCORDING TO YOU MAZE SIZE*/]; //allocating byte[] for the decompressed maze -
                         is.read(decompressedMaze); //Fill decompressedMaze with bytes
                         maze = new Maze(decompressedMaze);
+                        playerCurrentRow = maze.getStartPosition().getRowIndex() * 2;
+                        playerCurrentCol = maze.getStartPosition().getColumnIndex() * 2;
                        // maze.print();
 
                     }
@@ -54,7 +99,7 @@ public class MyModel extends Observable implements IModel {
             e.printStackTrace();
         }
         setChanged();
-        notifyObservers();
+        notifyObservers("GENERATE");
         server.stop();
 
 
@@ -89,33 +134,32 @@ public class MyModel extends Observable implements IModel {
         catch(IOException e){
             e.printStackTrace();
         }
+        setChanged();
+        notifyObservers("SOLVE");
         server.stop();
     }
 
     @Override
-    public Maze getCurrentMaze() {
-        return maze;
-    }
-
     public Maze getMaze() {
         return maze;
     }
-
+    @Override
     public void setMaze(Maze maze) {
         this.maze = maze;
+        playerCurrentRow = maze.getStartPosition().getRowIndex() * 2;
+        playerCurrentCol = maze.getStartPosition().getColumnIndex() * 2;
+        setChanged();
+        notifyObservers("LOAD");
     }
 
     public Solution getSolution() {
         return solution;
     }
 
-    public void setSolution(Solution solution) {
-        this.solution = solution;
-    }
 
-    public boolean canMove(String direction, String currentPlayerRow, String currentPlayerColumn) {
-        int currRow = Integer.parseInt(currentPlayerRow);
-        int currCol = Integer.parseInt(currentPlayerColumn);
+    private boolean canMove(String direction) {
+        int currRow = playerCurrentRow;
+        int currCol = playerCurrentCol;
         if (direction.equals("UP")) {
             return (currRow - 1 >= 0 && maze.getMazeArr()[currRow - 1][currCol] == 0);
         }
@@ -131,5 +175,42 @@ public class MyModel extends Observable implements IModel {
         else{
             return false;
         }
+    }
+    @Override
+    public void updateCharacterLocation(String direction)
+    {
+        switch(direction)
+        {
+            case "UP": //Up
+                if(canMove("UP")) {
+                    playerCurrentRow--;
+                }
+                break;
+
+            case "DOWN": //Down
+                if(canMove("DOWN"))
+                    playerCurrentRow++;
+                break;
+            case "LEFT": //Left
+                if(canMove("LEFT"))
+                    playerCurrentCol--;
+                break;
+            case "RIGHT": //Right
+                if(canMove("RIGHT"))
+                    playerCurrentCol++;
+                break;
+        }
+        if(playerCurrentRow == maze.getGoalPosition().getRowIndex() * 2 && playerCurrentCol == maze.getGoalPosition().getColumnIndex() * 2)
+            mazeIsSolved = true;
+        setChanged();
+        notifyObservers("MOVE");
+    }
+
+    public void restartMaze() {
+        mazeIsSolved = false;
+        playerCurrentRow = maze.getStartPosition().getRowIndex() * 2;
+        playerCurrentCol = maze.getStartPosition().getColumnIndex() * 2;
+        setChanged();
+        notifyObservers("GENERATE");
     }
 }

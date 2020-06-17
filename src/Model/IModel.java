@@ -8,6 +8,7 @@ public interface IModel {
 
     void generateMaze(int rows, int columns);
     void solveMaze(Maze maze);
-
-    Maze getCurrentMaze();
+    void setMaze(Maze maze);
+    Maze getMaze();
+    void updateCharacterLocation(String direction);
 }

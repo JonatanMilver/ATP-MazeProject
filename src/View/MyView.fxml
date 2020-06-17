@@ -7,18 +7,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@mainPageStyling.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
    <children>
-      <AnchorPane layoutY="148.0" prefHeight="254.0" prefWidth="501.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="148.0">
+      <AnchorPane layoutY="148.0" prefHeight="254.0" prefWidth="501.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Button layoutX="202.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#handleNewButton" prefHeight="32.0" prefWidth="98.0" text="NEW GAME" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="201.0" />
-            <Button layoutX="202.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#handleLoadButton" prefHeight="32.0" prefWidth="98.0" text="LOAD GAME" />
-            <Button layoutX="202.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#handleHelpButton" prefHeight="32.0" prefWidth="98.0" text="GAME RULES" />
-            <Button layoutX="202.0" layoutY="143.0" mnemonicParsing="false" onMouseClicked="#handleAboutButton" prefHeight="32.0" prefWidth="98.0" text="ABOUT US" />
-            <Button fx:id="mainWindowExitButton" layoutX="202.0" layoutY="194.0" mnemonicParsing="false" onMouseClicked="#handleExitButton" prefHeight="32.0" prefWidth="98.0" text="EXIT" />
+            <Button layoutX="202.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#handleLoadButton" prefHeight="32.0" prefWidth="98.0" text="LOAD GAME" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="201.0" />
+            <Button layoutX="202.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#handleHelpButton" prefHeight="32.0" prefWidth="98.0" text="GAME RULES" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="201.0" />
+            <Button layoutX="202.0" layoutY="143.0" mnemonicParsing="false" onMouseClicked="#handleAboutButton" prefHeight="32.0" prefWidth="98.0" text="ABOUT US" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="201.0" />
+            <Button fx:id="mainWindowExitButton" layoutX="202.0" layoutY="194.0" mnemonicParsing="false" onMouseClicked="#handleExitButton" prefHeight="32.0" prefWidth="98.0" text="EXIT" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="201.0" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="148.0" prefWidth="501.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="186.0" layoutY="14.0" prefHeight="37.0" prefWidth="130.0" text="Let's Maze" textAlignment="CENTER" textFill="#d00404">
+            <Label alignment="CENTER" layoutX="186.0" layoutY="14.0" prefHeight="37.0" prefWidth="130.0" text="Let's Maze" textAlignment="CENTER" textFill="#d00404" AnchorPane.leftAnchor="186.0" AnchorPane.rightAnchor="185.0">
                <font>
                   <Font name="Guttman Drogolin Bold" size="22.0" />
                </font>
