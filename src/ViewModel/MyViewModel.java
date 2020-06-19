@@ -65,9 +65,34 @@ public class MyViewModel extends Observable implements Observer {
      * @param columns int
      *
      */
-    public void generateMaze(int rows, int columns){
-        model.generateMaze(rows,columns);
+    public void generateMaze(String rows, String columns){
+        if(checkValidInput(rows, columns)) {
+            int rowsCheck  = Integer.parseInt(rows);
+            int columnsCheck = Integer.parseInt(columns);
+            model.generateMaze(rowsCheck, columnsCheck);
+        }
+        else{
+            setChanged();
+            notifyObservers("INVALIDINPUT");
+        }
         //maze = model.getMaze();
+
+    }
+
+    public boolean checkValidInput(String rows, String columns){
+        int rowsCheck = 0;
+        int columnsCheck = 0;
+        try {
+           rowsCheck  = Integer.parseInt(rows);
+           columnsCheck = Integer.parseInt(columns);
+        }
+        catch (NumberFormatException e){
+            return false;
+        }
+        if(rowsCheck <= 1 || columnsCheck <= 1)
+            return false;
+
+        return true;
 
     }
 
@@ -124,6 +149,7 @@ public class MyViewModel extends Observable implements Observer {
             maze = model.getMaze();
             characterRow = maze.getStartPosition().getRowIndex() * 2;
             characterCol = maze.getStartPosition().getColumnIndex() * 2;
+
         }
 
         setChanged();
@@ -138,36 +164,36 @@ public class MyViewModel extends Observable implements Observer {
     public void moveCharacter(KeyEvent keyEvent) {
         String direction = "";
         switch (keyEvent.getCode()) {
-            case UP:
+            case UP: case NUMPAD8:
                 direction = "UP";
                 break;
-            case DOWN:
+            case DOWN: case NUMPAD2:
                 direction = "DOWN";
                 break;
-            case RIGHT:
+            case RIGHT: case NUMPAD6:
                 direction = "RIGHT";
                 break;
-            case LEFT:
+            case LEFT: case NUMPAD4:
                 direction = "LEFT";
                 break;
-//            case W:
-//                mazeDisplayer.set_player_position(player_row_position - 1, player_col_position);
-//                break;
-//            case S:
-//                mazeDisplayer.set_player_position(player_row_position + 1, player_col_position);
-//                break;
-//            case D:
-//                mazeDisplayer.set_player_position(player_row_position, player_col_position + 1);
-//                break;
-//            case A:
-//                mazeDisplayer.set_player_position(player_row_position, player_col_position - 1);
-//                break;
-
+            case NUMPAD1:
+                direction = "DOWNLEFT";
+                break;
+            case NUMPAD3:
+                direction = "DOWNRIGHT";
+                break;
+            case NUMPAD7:
+                direction = "UPLEFT";
+                break;
+            case NUMPAD9:
+                direction = "UPRIGHT";
         }
         model.updateCharacterLocation(direction);
     }
 
     public void restartMaze() {
+//        this.characterRow = this.maze.getStartPosition().getRowIndex() * 2;
+//        this.characterCol = this.maze.getStartPosition().getColumnIndex() * 2;
         model.restartMaze();
     }
 }

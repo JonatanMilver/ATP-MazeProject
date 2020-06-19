@@ -28,7 +28,20 @@ public abstract class AView implements IView, Observer {
 //        this.stage = stage;
 //        this.viewModel = viewModel;
 //    }
+    public Stage openNewStage(String fxmlFileName, String stageTitle, double v, double v1){
+        Stage newStage = new Stage();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlFileName));
+            newStage.setTitle(stageTitle);
+            newStage.setScene(new Scene(root, v, v1));
 
+
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        return newStage;
+    }
 
     @Override
     public void handleExitButton() {

@@ -2,25 +2,29 @@ package View;
 
 import algorithms.mazeGenerators.Maze;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+import javafx.stage.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.URI;
 import java.net.URL;
 import java.util.Observable;
 import java.util.ResourceBundle;
@@ -29,28 +33,33 @@ public class MyViewController extends AView implements Initializable {
 
 
     @FXML
-    public Label exitButton;
-    @FXML
     public Button exitButton1;
     @FXML
     public Button mainWindowExitButton;
-    @FXML
-    public MenuItem newGameButton;
-    @FXML
-    public BorderPane menuBorderPane;
-    @FXML
-    public MenuItem loadGameButton;
+    public Button newButton;
+
+
+    public BorderPane menuBarBorderPane;
+    public AnchorPane menuBarAnchorPane;
     @FXML
     private Button backFromAbout;
+    private NewPage newPage;
+//    private FXMLLoader loader;
+//    private Parent root;
     @FXML
-    public MediaView mainMedia;
-    private Media me;
-    private MediaPlayer mp;
+    private MediaView mv;
+    @FXML
+    private MediaView musicMV;
+
+
+
+
 
 
     public void handleExitButton(){
-    Platform.exit();
-}
+        Platform.exit();
+        System.exit(0);
+    }
 
     private void getStage(){
         if(exitButton1 != null){
@@ -62,19 +71,33 @@ public class MyViewController extends AView implements Initializable {
     }
     @Override
     public void handleNewButton() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("NewPage.fxml"));
         Parent root = null;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("NewPage.fxml"));
             root = loader.load();
-            NewPage newPage = loader.getController();
+
+            newPage = loader.getController();
             viewModel.addObserver(newPage);
-            getStage();
-            stage.setScene(new Scene(root , 500, 450));
+//            getStage();
+            Stage newStage = new Stage();
+            Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+            newStage.setScene(new Scene(root, screenBounds.getWidth(), screenBounds.getHeight()));
+//            newStage.setFullScreen(true);
+            newStage.show();
+            Stage stageToClose = ((Stage)newButton.getScene().getWindow());
+//            stageToClose.fireEvent(new WindowEvent(stageToClose, WindowEvent.WINDOW_CLOSE_REQUEST));
+            stageToClose.close();
+
+
+
+//            stage.setScene(scene);
+
 //            stage.setMaximized(true);
-            stage.setFullScreen(true);
+//            stage.setFullScreen(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
@@ -92,20 +115,26 @@ public class MyViewController extends AView implements Initializable {
                 return;
             }
             Parent root = null;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("NewPage.fxml"));
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("NewPage.fxml"));
                 root = loader.load();
-//                root = FXMLLoader.load(getClass().getResource("NewPage.fxml"));
                 getStage();
 
-                stage.setScene(new Scene(root , 500, 450));
+                stage.setScene(scene);
                 stage.setMaximized(true);
-                NewPage newPageControls = loader.getController();
-                viewModel.addObserver(newPageControls);
-                newPageControls.showLoadedMaze(file);
+                if(newPage != null){
+                    viewModel.deleteObserver(newPage);
+                }
+                newPage = loader.getController();
+                viewModel.addObserver(newPage);
+                newPage.showLoadedMaze(file);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+//                root = FXMLLoader.load(getClass().getResource("NewPage.fxml"));
+
+
 
         }
 
@@ -150,22 +179,14 @@ public class MyViewController extends AView implements Initializable {
 
     @Override
     public void handleAboutButton() {
-        Stage aboutStage = new Stage();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("AboutUs.fxml"));
-            aboutStage.setTitle("About");
-            aboutStage.setScene(new Scene(root, 500, 450));
-            aboutStage.setMaximized(true);
-            aboutStage.show();
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
+        Stage aboutStage = openNewStage("AboutUs.fxml","About",500,405);
+        aboutStage.show();
     }
 
     @Override
     public void handlePropertiesButton() {
-
+        Stage propertiesStage = openNewStage("Properties.fxml", "Properties", 350,200);
+        propertiesStage.show();
     }
 
     @Override
@@ -201,14 +222,24 @@ public class MyViewController extends AView implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String mediaPath = new File("src/View/Resources/background.mp4").getAbsolutePath();
-        me = new Media(new File(mediaPath).toURI().toString());
-        mp = new MediaPlayer(me);
-        mainMedia = new MediaView();
-        mainMedia.setMediaPlayer(mp);
-        mp.setAutoPlay(true);
-        mainMedia.setFitHeight(400);
-        mainMedia.setFitWidth(400);
+//        loader = new FXMLLoader(getClass().getResource("NewPage.fxml"));
+//        try {
+//            root = loader.load();
+//            Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+//            scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        File newVi = new File("C:\\Users\\yonym\\Documents\\GitHub\\ATP-MazeProject\\resources\\background.mp4");
+        URI u = newVi.toURI();
+        Media video = new Media(u.toString());
+        MediaPlayer mpVideo = new MediaPlayer(video);
+        mv.setMediaPlayer(mpVideo);
+        mpVideo.setAutoPlay(true);
+        mpVideo.setCycleCount(MediaPlayer.INDEFINITE);
+        mv.setFitWidth(Screen.getPrimary().getBounds().getWidth());
+        mv.setFitHeight(Screen.getPrimary().getBounds().getHeight());
+
     }
 
     public void quitFromAbout(MouseEvent mouseEvent) {
@@ -217,4 +248,6 @@ public class MyViewController extends AView implements Initializable {
             aboutStage.close();
         }
     }
+
+
 }

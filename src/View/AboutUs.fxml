@@ -44,7 +44,7 @@
       </Label>
       <ImageView fitHeight="149.0" fitWidth="194.0" layoutX="29.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Resources/JonatanMilver.png" />
+            <Image url="@../../resources/JonatanMilver.png" />
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="29.0" layoutY="524.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jonatan">

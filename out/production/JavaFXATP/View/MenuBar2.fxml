@@ -6,23 +6,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController" >
+<BorderPane fx:id="menuBarBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="1280.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
    <top>
-      <AnchorPane prefHeight="31.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="menuBarAnchorPane" prefHeight="37.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
-            <Button styleClass="menu-button1" layoutX="168.0" layoutY="-1.0" minHeight="21.0" mnemonicParsing="false" onAction="#handleHelpButton" prefHeight="31.0" prefWidth="56.0" text="Help" />
-            <Button styleClass="menu-button1" layoutX="488.0" layoutY="-1.0" minHeight="21.0" mnemonicParsing="false" onAction="#handleAboutButton" prefHeight="31.0" prefWidth="56.0" text="About" AnchorPane.rightAnchor="56.0" />
-            <Button styleClass="menu-button1" fx:id="exitButton1" layoutX="544.0" layoutY="-1.0" minHeight="21.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="31.0" prefWidth="56.0" text="Exit" AnchorPane.rightAnchor="0.0" />
-            <MenuButton styleClass="menu-button1" layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="76.0" text="File">
+            <Button alignment="TOP_CENTER" contentDisplay="TOP" layoutX="168.0" layoutY="-1.0" minHeight="21.0" mnemonicParsing="false" onAction="#handleHelpButton" prefHeight="37.0" prefWidth="69.0" styleClass="menu-button1" text="Help" textAlignment="CENTER" />
+            <Button layoutX="449.0" layoutY="-1.0" minHeight="21.0" mnemonicParsing="false" onAction="#handleAboutButton" prefHeight="37.0" prefWidth="77.0" styleClass="menu-button1" text="About" AnchorPane.rightAnchor="73.66666666666663" />
+            <Button fx:id="exitButton1" layoutX="544.0" layoutY="-1.0" minHeight="21.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="37.0" prefWidth="73.0" styleClass="menu-button1" text="Exit" AnchorPane.rightAnchor="0.0" />
+            <MenuButton layoutY="-1.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="76.0" styleClass="menu-button1" text="File">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#handleNewButton" text="New" />
                 <MenuItem mnemonicParsing="false" onAction="#handleSaveButton" text="Save" />
                   <MenuItem mnemonicParsing="false" onAction="#handleLoadButton" text="Load" />
               </items>
             </MenuButton>
-            <MenuButton styleClass="menu-button1" layoutX="76.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="92.0" text="Options">
+            <MenuButton layoutX="76.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="92.0" styleClass="menu-button1" text="Options">
               <items>
-                <MenuItem mnemonicParsing="false" text="Properties" />
+                <MenuItem mnemonicParsing="false" onAction="#handlePropertiesButton" text="Properties" />
               </items>
             </MenuButton>
          </children>

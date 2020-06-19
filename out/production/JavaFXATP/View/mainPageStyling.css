@@ -11,7 +11,7 @@ Button:hover{
     -fx-border-radius: 12px;
 }
 Button{
-    -fx-background-color: blank;
+    -fx-background-color: none;
     -fx-text-fill: black;
     -fx-border-width: 2px;
     -fx-border-color: #008CBA;

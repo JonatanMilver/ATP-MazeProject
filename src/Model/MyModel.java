@@ -148,6 +148,7 @@ public class MyModel extends Observable implements IModel {
         this.maze = maze;
         playerCurrentRow = maze.getStartPosition().getRowIndex() * 2;
         playerCurrentCol = maze.getStartPosition().getColumnIndex() * 2;
+
         setChanged();
         notifyObservers("LOAD");
     }
@@ -171,6 +172,18 @@ public class MyModel extends Observable implements IModel {
         }
         else if(direction.equals("LEFT")){
             return(currCol - 1 >= 0 && maze.getMazeArr()[currRow][currCol-1] == 0);
+        }
+        else if(direction.equals("UPLEFT")){
+            return(currRow - 1 >= 0 && currCol - 1 >= 0 && maze.getMazeArr()[currRow-1][currCol-1] == 0);
+        }
+        else if(direction.equals("UPRIGHT")){
+            return(currRow - 1 >= 0 && currCol + 1 < maze.getMazeArr()[0].length && maze.getMazeArr()[currRow -1][currCol + 1] == 0);
+        }
+        else if(direction.equals("DOWNLEFT")){
+            return(currRow + 1 < maze.getMazeArr().length && currCol - 1 >= 0 && maze.getMazeArr()[currRow+1][currCol-1] == 0);
+        }
+        else if(direction.equals("DOWNRIGHT")){
+            return (currRow + 1 <maze.getMazeArr().length && currCol + 1 <maze.getMazeArr()[0].length && maze.getMazeArr()[currRow+1][currCol+1] == 0);
         }
         else{
             return false;
@@ -198,6 +211,30 @@ public class MyModel extends Observable implements IModel {
             case "RIGHT": //Right
                 if(canMove("RIGHT"))
                     playerCurrentCol++;
+                break;
+            case "UPLEFT": //Up and Left
+                if(canMove("UPLEFT")){
+                    playerCurrentRow--;
+                    playerCurrentCol--;
+                }
+                break;
+            case "UPRIGHT": //Up and Right
+                if(canMove("UPRIGHT")){
+                    playerCurrentRow--;
+                    playerCurrentCol++;
+                }
+                break;
+            case "DOWNLEFT": //Down and Left
+                if(canMove("DOWNLEFT")){
+                    playerCurrentRow++;
+                    playerCurrentCol--;
+                }
+                break;
+            case "DOWNRIGHT": //Down and Right
+                if(canMove("DOWNRIGHT")){
+                    playerCurrentRow++;
+                    playerCurrentCol++;
+                }
                 break;
         }
         if(playerCurrentRow == maze.getGoalPosition().getRowIndex() * 2 && playerCurrentCol == maze.getGoalPosition().getColumnIndex() * 2)
