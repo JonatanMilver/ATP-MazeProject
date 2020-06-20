@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.File;
+import java.io.FileInputStream;
 import java.net.URI;
 
 
@@ -32,10 +33,10 @@ public class Main extends Application {
 
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         primaryStage.setTitle("Let's Maze");
-        primaryStage.setScene(new Scene(root, screenBounds.getWidth(), screenBounds.getHeight()));
+        primaryStage.setScene(new Scene(root, screenBounds.getWidth(), screenBounds.getHeight()-100));
+        primaryStage.setResizable(true);
         Platform.setImplicitExit(true);
-//        primaryStage.setMaximized(true);
-//        primaryStage.setFullScreen(true);
+        primaryStage.getIcons().add(new javafx.scene.image.Image(new FileInputStream("resources/puzzle.png")));
 
 
         primaryStage.show();

@@ -20,10 +20,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.*;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.URI;
 import java.net.URL;
 import java.util.Observable;
@@ -81,7 +78,9 @@ public class MyViewController extends AView implements Initializable {
 //            getStage();
             Stage newStage = new Stage();
             Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-            newStage.setScene(new Scene(root, screenBounds.getWidth(), screenBounds.getHeight()));
+            newStage.setScene(new Scene(root, screenBounds.getWidth(), screenBounds.getHeight()-100));
+            newStage.setTitle("Let's Maze");
+            newStage.getIcons().add(new javafx.scene.image.Image(new FileInputStream("resources/puzzle.png")));
 //            newStage.setFullScreen(true);
             newStage.show();
             Stage stageToClose = ((Stage)newButton.getScene().getWindow());
@@ -119,14 +118,17 @@ public class MyViewController extends AView implements Initializable {
             try {
                 root = loader.load();
                 getStage();
-
-                stage.setScene(scene);
-                stage.setMaximized(true);
-                if(newPage != null){
-                    viewModel.deleteObserver(newPage);
-                }
                 newPage = loader.getController();
                 viewModel.addObserver(newPage);
+                Stage newStage = new Stage();
+                Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+                newStage.setScene(new Scene(root, screenBounds.getWidth(), screenBounds.getHeight()-100));
+                newStage.setTitle("Let's Maze");
+                newStage.getIcons().add(new javafx.scene.image.Image(new FileInputStream("resources/puzzle.png")));
+                newStage.show();
+                Stage stageToClose = ((Stage)newButton.getScene().getWindow());
+                stageToClose.close();
+
                 newPage.showLoadedMaze(file);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -180,12 +182,22 @@ public class MyViewController extends AView implements Initializable {
     @Override
     public void handleAboutButton() {
         Stage aboutStage = openNewStage("AboutUs.fxml","About",500,405);
+        try {
+            aboutStage.getIcons().add(new javafx.scene.image.Image(new FileInputStream("resources/puzzle.png")));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         aboutStage.show();
     }
 
     @Override
     public void handlePropertiesButton() {
         Stage propertiesStage = openNewStage("Properties.fxml", "Properties", 350,200);
+        try {
+            propertiesStage.getIcons().add(new javafx.scene.image.Image(new FileInputStream("resources/puzzle.png")));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         propertiesStage.show();
     }
 
@@ -194,7 +206,8 @@ public class MyViewController extends AView implements Initializable {
         String hints =
                 "* You nead to reach the goal position\n" +
                         "* You can not go through walls\n" +
-                        "* Whenever help is needed, press the SOLVE button in order to get the solution\n" +
+                        "* Whenever help is needed, press the 'SHOW SOLUTION' button in order to get the solution\n" +
+                        "The 'SHOW SOLUTION' button is active only when you are in the middle of a game\n"+
                         "* You can go anywhere by your possition if possible\n" +
                         "* Possible steps are: Up, Down, Left, Right and Diagonally.\n" +
                         "* Diagonal steps are up-left, up-right, down-left, down-right only if these steps are possible."
@@ -222,23 +235,18 @@ public class MyViewController extends AView implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        loader = new FXMLLoader(getClass().getResource("NewPage.fxml"));
-//        try {
-//            root = loader.load();
-//            Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-//            scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        File newVi = new File("C:\\Users\\yonym\\Documents\\GitHub\\ATP-MazeProject\\resources\\background.mp4");
-        URI u = newVi.toURI();
-        Media video = new Media(u.toString());
-        MediaPlayer mpVideo = new MediaPlayer(video);
-        mv.setMediaPlayer(mpVideo);
-        mpVideo.setAutoPlay(true);
-        mpVideo.setCycleCount(MediaPlayer.INDEFINITE);
-        mv.setFitWidth(Screen.getPrimary().getBounds().getWidth());
-        mv.setFitHeight(Screen.getPrimary().getBounds().getHeight());
+        if(mv != null){
+            File newVi = new File("C:\\Users\\yonym\\Documents\\GitHub\\ATP-MazeProject\\resources\\background.mp4");
+            URI u = newVi.toURI();
+            Media video = new Media(u.toString());
+            MediaPlayer mpVideo = new MediaPlayer(video);
+
+            mv.setMediaPlayer(mpVideo);
+            mpVideo.setAutoPlay(true);
+            mpVideo.setCycleCount(MediaPlayer.INDEFINITE);
+            mv.setFitWidth(Screen.getPrimary().getBounds().getWidth());
+            mv.setFitHeight(Screen.getPrimary().getBounds().getHeight());
+        }
 
     }
 

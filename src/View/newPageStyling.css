@@ -6,8 +6,11 @@
 /*.bPane{*/
 /*    -fx-background-image: url("Resources/parket.jpg");*/
 /*}*/
-.anchorPane{
+#anchorPane{
     -fx-font-family: "Comic Sans MS", cursive, sans-serif;
+    -fx-background-color: #008CBA;
+    -fx-background-size: cover;
+    -fx-background-repeat: stretch;
 }
 
 Button{
@@ -26,6 +29,24 @@ MenuButton:hover{
     -fx-background-color: #008CBA;
     -fx-text-fill: white;
 }
+#helpMenu{
+    -fx-text-fill: black;
+}
+#exitMenu{
+    -fx-text-fill: black;
+}
+#aboutMenu{
+    -fx-text-fill: black;
+}
+#helpMenu:hover{
+     -fx-text-fill: white;
+ }
+#exitMenu:hover{
+    -fx-text-fill: white;
+}
+#aboutMenu:hover{
+    -fx-text-fill: white;
+}
 Label{
     -fx-text-fill: white;
 }
@@ -37,4 +58,11 @@ MenuItem:hover{
     -fx-background-color: #008CBA;
     -fx-text-fill: white;
 }
+
+#moveCheckLabel{
+    -fx-text-fill: #333536;
+}
+
+
+
 

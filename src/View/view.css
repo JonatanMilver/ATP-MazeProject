@@ -1,10 +1,11 @@
 #pane{
-    -fx-background-image: url("Resources/mitchell-luo-z1c9juteR5c-unsplash.jpg");
+    -fx-background-image: url("../rafif-prawira-SgTLuX6t8Yo-unsplash.jpg");
     -fx-background-repeat: stretch;
     -fx-background-size: cover;
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
+
 .headers{
     -fx-effect: dropshadow(gaussian, black, 1.5, 2, 1.5, 2);
 }

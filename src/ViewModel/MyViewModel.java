@@ -120,7 +120,8 @@ public class MyViewModel extends Observable implements Observer {
             }
         }
         catch(ClassNotFoundException | IOException e){
-            System.out.println("Thrown exception");
+            setChanged();
+            notifyObservers("NULLMAZE");
             }
 
     }

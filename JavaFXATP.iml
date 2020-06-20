@@ -12,5 +12,6 @@
     <orderEntry type="library" name="JGmazeProj" level="project" />
     <orderEntry type="library" name="JGmazeProj1" level="project" />
     <orderEntry type="library" name="fontawesomefx-8.9" level="project" />
+    <orderEntry type="library" name="javafx-cdi-bootstrap-2.0.0" level="project" />
   </component>
 </module>

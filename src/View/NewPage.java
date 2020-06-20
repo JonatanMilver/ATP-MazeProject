@@ -2,16 +2,14 @@ package View;
 
 import algorithms.mazeGenerators.Maze;
 import algorithms.search.AState;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -20,11 +18,13 @@ import javafx.scene.layout.Region;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.shape.CubicCurveTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
-import javax.swing.*;
+import javafx.util.Duration;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -48,6 +48,7 @@ public class NewPage extends AView implements Initializable {
     public AnchorPane anchorPane;
     public MediaView musicMV;
     public MediaView mv;
+    public Label moveCheckLabel;
     @FXML
     private MenuButton story;
     @FXML
@@ -58,7 +59,6 @@ public class NewPage extends AView implements Initializable {
 
     public Label player_row_label = new Label();
     public Label player_col_label = new Label();
-    public Button backToMain;
     public StringProperty playerCurrentRow = new SimpleStringProperty();
     public StringProperty playercurrentColumn = new SimpleStringProperty();
 
@@ -100,11 +100,18 @@ public class NewPage extends AView implements Initializable {
         fileChooser.getExtensionFilters().add(extFilter);
 
         Maze mazeToSave = viewModel.getMaze();
+        if(mazeToSave == null){
+            Alert noMaze = new Alert(Alert.AlertType.ERROR, "There is no maze to save!");
+            noMaze.show();
+            return;
+        }
 
         File file = fileChooser.showSaveDialog(stage);
 
         //need to check if person closes (X) the file chooser!!!
-        writeMazeToFile(mazeToSave , file.getPath());
+        if(file != null) {
+            writeMazeToFile(mazeToSave, file.getPath());
+        }
     }
 
     private void writeMazeToFile(Maze mazeFromClient , String path) {
@@ -145,7 +152,6 @@ public class NewPage extends AView implements Initializable {
         Alert dialogBox = new Alert(Alert.AlertType.INFORMATION, hints, ButtonType.OK);
         dialogBox.setHeaderText("TIPS AND HINTS");
 
-        //dialogVbox.setContentText(hints);
         dialogBox.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         dialogBox.setResizable(true);
         dialogBox.setTitle("Help");
@@ -213,20 +219,31 @@ public class NewPage extends AView implements Initializable {
                 bPane.setStyle("-fx-background-image: url('grass.jpg')");
             mouseClicked(null);
             mazeDisplayer.drawMaze(viewModel.getMaze());
+            mazeDisplayer.setDrawSolution(false);
+            showSolution.setText("Show Solution");
             showSolution.setVisible(true);
         }
         else if(operation.equals("SOLVE")){
+            if(!mazeDisplayer.isAskedToShowSolution()){
+                mazeDisplayer.setDrawSolution(true);
+                showSolution.setText("Hide Solution");
+            }
+            else {
+                mazeDisplayer.setDrawSolution(false);
+                showSolution.setText("Show Solution");
+            }
             drawSolution(viewModel.getSolution().getSolutionPath());
         }
         else if(operation.equals("MOVE") || operation.equals("MOVEANDSOLVED")){
             int rowChanged = viewModel.getCharacterRow();
             int colChanged = viewModel.getCharacterCol();
             set_player_position(rowChanged,colChanged);
+            if(mazeDisplayer.isAskedToShowSolution())
+                drawSolution(viewModel.getSolution().getSolutionPath());
             if(operation.equals("MOVEANDSOLVED")){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "It's A-MAZE-ING!");
-                alert.show();
+                alert.showAndWait();
                 restartMaze();
-                System.out.println("SOLVED");
             }
         }
         else if(operation.equals("LOAD")){
@@ -237,14 +254,48 @@ public class NewPage extends AView implements Initializable {
             Alert invalidInput = new Alert(Alert.AlertType.ERROR, "One or more of the inputs were invalid.");
             invalidInput.show();
         }
+        else if(operation.equals("NULLMAZE")){
+            Alert nullMaze = new Alert(Alert.AlertType.ERROR, "File doesn't contain a maze, please try again.");
+            nullMaze.show();
+        }
     }
 
     private void restartMaze() {
         viewModel.restartMaze();
     }
 
+    private void listenToResize(){
+        anchorPane.widthProperty().addListener((obs, oldVal, newVal) -> {
+//            mv.setFitWidth(anchorPane.getWidth());
+//            mv.setFitHeight(anchorPane.getHeight());
+            bPane.setMinWidth(anchorPane.getWidth());
+            if(viewModel.getMaze() != null)
+                mazeDisplayer.drawMaze(viewModel.getMaze());
+        });
+        anchorPane.heightProperty().addListener((obs, oldVal, newVal) -> {
+//            mv.setFitWidth(anchorPane.getWidth());
+//            mv.setFitHeight(anchorPane.getHeight());
+
+            bPane.setMinHeight(anchorPane.getHeight());
+            if(viewModel.getMaze() != null)
+                mazeDisplayer.drawMaze(viewModel.getMaze());
+        });
+        bPane.widthProperty().addListener((obs, oldVal, newVal) -> {
+            mazeDisplayer.setWidth(bPane.getWidth());
+            if(viewModel.getMaze() != null)
+                mazeDisplayer.drawMaze(viewModel.getMaze());
+        });
+        bPane.heightProperty().addListener((obs, oldVal, newVal)-> {
+            mazeDisplayer.setHeight(bPane.getHeight());
+            if(viewModel.getMaze() != null)
+                mazeDisplayer.drawMaze(viewModel.getMaze());
+        });
+    }
+
+
+
     private void drawSolution(ArrayList<AState> solutionPath) {
-        mazeDisplayer.drawSolution(solutionPath);
+        mazeDisplayer.askedToShowTheSolution(solutionPath);
     }
 
     @Override
@@ -254,26 +305,44 @@ public class NewPage extends AView implements Initializable {
         playerCurrentRow.bind(player_row_label.textProperty());
         playercurrentColumn.bind(player_col_label.textProperty());
         bPane.setPrefWidth(Screen.getPrimary().getBounds().getWidth()-154);
-        bPane.setPrefHeight(Screen.getPrimary().getBounds().getHeight()-30);
+        bPane.setPrefHeight(Screen.getPrimary().getBounds().getHeight()-30-100);
         mazeDisplayer.setWidth(Screen.getPrimary().getBounds().getWidth()-154);
-        mazeDisplayer.setHeight(Screen.getPrimary().getBounds().getHeight()-30);
+        mazeDisplayer.setHeight(Screen.getPrimary().getBounds().getHeight()-30-100);
 
-        File newVi = new File("C:\\Users\\yonym\\Documents\\GitHub\\ATP-MazeProject\\resources\\background.mp4");
+        listenToResize();
+
+
+        File newVi = new File("resources/background.mp4");
         URI u = newVi.toURI();
         Media video = new Media(u.toString());
         MediaPlayer mpVideo = new MediaPlayer(video);
-        mv.setMediaPlayer(mpVideo);
+//        mv.setPreserveRatio(true);
+//        mv.setMediaPlayer(mpVideo);
         mpVideo.setAutoPlay(true);
         mpVideo.setCycleCount(MediaPlayer.INDEFINITE);
-        mv.setFitWidth(Screen.getPrimary().getBounds().getWidth());
-        mv.setFitHeight(Screen.getPrimary().getBounds().getHeight());
+//        mv.setFitWidth(anchorPane.getWidth());
+//        mv.setFitHeight(anchorPane.getHeight());
 
-        File musicBackground = new File("C:\\Users\\yonym\\Documents\\GitHub\\ATP-MazeProject\\resources\\backgroundSong.mp3");
+        File musicBackground = new File("resources/backgroundSong.mp3");
         Media music = new Media(musicBackground.toURI().toString());
         MediaPlayer mpMusic = new MediaPlayer(music);
         musicMV.setMediaPlayer(mpMusic);
         mpMusic.setAutoPlay(true);
-        mpMusic.setVolume(0.05);
+        mpMusic.setVolume(0.02);
+        moveCheckLabel.setText(story.getText());
+
+        Path path = new Path();
+        path.getElements().add(new MoveTo(0,0));
+        path.getElements().add(new CubicCurveTo(240, 0, 400, 0, 620, 0));
+//        path.getElements().add(new CubicCurveTo(120, 0, 240, 0, 240, 0));
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.millis(4000));
+        pathTransition.setPath(path);
+        pathTransition.setNode(moveCheckLabel);
+        pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        pathTransition.setCycleCount(Timeline.INDEFINITE);
+        pathTransition.setAutoReverse(true);
+        pathTransition.play();
     }
 
     public void set_player_position(int rowPosition , int colPosition){
@@ -289,13 +358,13 @@ public class NewPage extends AView implements Initializable {
         if(actionEvent.getSource() == michaelJordan){
             mazeDisplayer.chooseStorytoFillMaze(1);
             storyNumber = 1;
-
         }
         else if(actionEvent.getSource() == whiskey){
             mazeDisplayer.chooseStorytoFillMaze(2);
             storyNumber = 2;
 
         }
+        moveCheckLabel.setText(story.getText());
     }
 
     public void keyPressed(KeyEvent keyEvent) {

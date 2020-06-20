@@ -24,20 +24,21 @@ public class MazeDisplayer extends Canvas {
     private String endImagePath = "resources/basket.jpg";
     private String playerImagePath = "resources/jordan.jpg";
     private String wallImagePath = "resources/bird.jpg";
-    private String solutionImagePath = "resources/basketballSteps.jpg";
+    private String solutionImagePath = "resources/basketballSteps-removebg-preview.png";
+    private boolean askedToShowSolution =false;
 
     public void chooseStorytoFillMaze(int storyNumber){
         if(storyNumber == 1){
             wallImagePath = "resources/bird.jpg";
             endImagePath = "resources/basket.jpg";
             playerImagePath = "resources/jordan.jpg";
-            solutionImagePath = "resources/basketballSteps.jpg";
+            solutionImagePath = "resources/basketballSteps-removebg-preview.png";
         }
         else if(storyNumber == 2){
-            wallImagePath = "resources/poop_emoji1.jpg";
+            wallImagePath = "resources/poop_emoji1-removebg-preview.png";
             endImagePath = "resources/steak.jpg";
             playerImagePath = "resources/whiskey.jpeg";
-            solutionImagePath = "resources/paw.jpg";
+            solutionImagePath = "resources/footprint__2_-removebg-preview.png";
         }
     }
 
@@ -95,13 +96,6 @@ public class MazeDisplayer extends Canvas {
             graphicsContext.setFill(Color.RED);
             double w,h;
             //Draw Maze
-
-//            Image wallImage = null;
-//            try {
-//                wallImage = new Image(new FileInputStream(getImageFileNameWall()));
-//            } catch (FileNotFoundException e) {
-//                System.out.println("There is no file....");
-//            }
             Image goalImage = null;
             Image wallImage = null;
             try {
@@ -123,6 +117,7 @@ public class MazeDisplayer extends Canvas {
 //                            graphicsContext.fillRect(w,h,cellWidth,cellHeight);
 //                        }else{
                             graphicsContext.drawImage(wallImage,w,h,cellWidth,cellHeight);
+
 //                        }
                     }
                     else if(i == maze.getGoalPosition().getRowIndex()*2 && j == maze.getGoalPosition().getColumnIndex()*2){
@@ -169,34 +164,40 @@ public class MazeDisplayer extends Canvas {
         }
         double cellHeight = canvasHeight/row;
         double cellWidth = canvasWidth/col;
-        /*PRINT SOLUTION PATH FOR TESTING!*/
-        for(AState state : solutionPath){
-            System.out.println(state.getName());
-        }
         GraphicsContext graphicsContext = getGraphicsContext2D();
-        //graphicsContext.setFill(Color.YELLOW);
         double w,h;
         h=((MazeState)solutionPath.get(0)).getCurrent_position().getRowIndex() * 2 * cellHeight;
         w = ((MazeState)solutionPath.get(0)).getCurrent_position().getColumnIndex() * 2 * cellWidth;
         int prevRowIndex = ((MazeState)solutionPath.get(0)).getCurrent_position().getRowIndex() * 2;
         int prevColIndex = ((MazeState)solutionPath.get(0)).getCurrent_position().getColumnIndex() * 2;
-//        graphicsContext.fillRect(w,h, cellWidth, cellHeight);
         graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
         for(int i=1;i<solutionPath.size();i++){
-
             h=((MazeState)solutionPath.get(i)).getCurrent_position().getRowIndex() * 2 * cellHeight;
             w = ((MazeState)solutionPath.get(i)).getCurrent_position().getColumnIndex() * 2 * cellWidth;
-//            graphicsContext.fillRect(w,h, cellWidth, cellHeight);
             graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
             int currRowIndex = ((MazeState)solutionPath.get(i)).getCurrent_position().getRowIndex() * 2;
             int currColIndex = ((MazeState)solutionPath.get(i)).getCurrent_position().getColumnIndex() * 2;
             fillEmptyRects(solutionImg,prevRowIndex, prevColIndex, currRowIndex, currColIndex, graphicsContext, cellHeight, cellWidth);
             prevRowIndex = currRowIndex;
             prevColIndex = currColIndex;
-
+        }
+    }
+    public void askedToShowTheSolution(ArrayList<AState> solutionPath){
+        if(askedToShowSolution) {
+            drawSolution(solutionPath);
+        }
+        else{
+            draw();
         }
     }
 
+    public void setDrawSolution(boolean solve){
+        askedToShowSolution = solve;
+    }
+
+    public boolean isAskedToShowSolution() {
+        return askedToShowSolution;
+    }
 
     /**
      * Fills the solution path.
@@ -210,6 +211,7 @@ public class MazeDisplayer extends Canvas {
      */
     private void fillEmptyRects(Image solutionImg,int prevRowIndex, int prevColIndex, int currRowIndex, int currColIndex, GraphicsContext graphicsContext, double cellHeight, double cellWidth) {
         double w,h;
+
         /*Same row but the columns are different*/
         if(prevRowIndex == currRowIndex){
             if(prevColIndex < currColIndex){
