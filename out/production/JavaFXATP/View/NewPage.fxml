@@ -24,7 +24,6 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@newPageStyling.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.NewPage">
     <children>
-<!--      <MediaView fx:id="mv" fitHeight="${anchorPane.height}" fitWidth="${anchorPane.width}"/>-->
         <BorderPane fx:id="menuBarBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="1280.0" stylesheets="@view.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
             <top>
                 <AnchorPane fx:id="menuBarAnchorPane" prefHeight="27.0" prefWidth="1280.0" BorderPane.alignment="CENTER">

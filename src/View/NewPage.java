@@ -266,8 +266,6 @@ public class NewPage extends AView implements Initializable {
 
     private void listenToResize(){
         anchorPane.widthProperty().addListener((obs, oldVal, newVal) -> {
-//            mv.setFitWidth(anchorPane.getWidth());
-//            mv.setFitHeight(anchorPane.getHeight());
             bPane.setMinWidth(anchorPane.getWidth());
             if(viewModel.getMaze() != null)
                 mazeDisplayer.drawMaze(viewModel.getMaze());

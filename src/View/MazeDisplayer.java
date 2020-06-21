@@ -22,22 +22,22 @@ public class MazeDisplayer extends Canvas {
     private int playerColumn;
 
     private String endImagePath = "resources/basket.jpg";
-    private String playerImagePath = "resources/jordan.jpg";
-    private String wallImagePath = "resources/bird.jpg";
+    private String playerImagePath = "resources/jordan1.png";
+    private String wallImagePath = "resources/bird1.png";
     private String solutionImagePath = "resources/basketballSteps-removebg-preview.png";
     private boolean askedToShowSolution =false;
 
     public void chooseStorytoFillMaze(int storyNumber){
         if(storyNumber == 1){
-            wallImagePath = "resources/bird.jpg";
+            wallImagePath = "resources/bird1.png";
             endImagePath = "resources/basket.jpg";
-            playerImagePath = "resources/jordan.jpg";
+            playerImagePath = "resources/jordan1.png";
             solutionImagePath = "resources/basketballSteps-removebg-preview.png";
         }
         else if(storyNumber == 2){
             wallImagePath = "resources/poop_emoji1-removebg-preview.png";
             endImagePath = "resources/steak.jpg";
-            playerImagePath = "resources/whiskey.jpeg";
+            playerImagePath = "resources/whiskey1.png";
             solutionImagePath = "resources/footprint__2_-removebg-preview.png";
         }
     }

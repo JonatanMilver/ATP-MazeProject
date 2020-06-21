@@ -2,15 +2,18 @@ package View;
 
 import algorithms.mazeGenerators.Maze;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -18,7 +21,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.stage.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.URI;
@@ -41,12 +46,10 @@ public class MyViewController extends AView implements Initializable {
     @FXML
     private Button backFromAbout;
     private NewPage newPage;
-//    private FXMLLoader loader;
-//    private Parent root;
     @FXML
     private MediaView mv;
     @FXML
-    private MediaView musicMV;
+    private ImageView logoImage;
 
 
 
@@ -235,20 +238,21 @@ public class MyViewController extends AView implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(mv != null){
-            File newVi = new File("C:\\Users\\yonym\\Documents\\GitHub\\ATP-MazeProject\\resources\\background.mp4");
-            URI u = newVi.toURI();
-            Media video = new Media(u.toString());
-            MediaPlayer mpVideo = new MediaPlayer(video);
+            Image logo = null;
+            try {
+                logo = new Image(new FileInputStream("resources/logo1.png"));
+                System.out.println(logo.toString());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            //logoImage = new ImageView(logo);
+            logoImage.setImage(logo);
+            logoImage.setX(300);
+            logoImage.setFitWidth(303);
 
-            mv.setMediaPlayer(mpVideo);
-            mpVideo.setAutoPlay(true);
-            mpVideo.setCycleCount(MediaPlayer.INDEFINITE);
-            mv.setFitWidth(Screen.getPrimary().getBounds().getWidth());
-            mv.setFitHeight(Screen.getPrimary().getBounds().getHeight());
         }
 
-    }
+
 
     public void quitFromAbout(MouseEvent mouseEvent) {
         if(mouseEvent.getSource() == backFromAbout){
