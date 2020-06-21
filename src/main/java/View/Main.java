@@ -39,6 +39,7 @@ public class Main extends Application {
 //        logger.warn("warn msg");
 //        logger.fatal("fatal msg");
 //        logger.error("error msg");
+        System.out.println("check");
 
 
 
