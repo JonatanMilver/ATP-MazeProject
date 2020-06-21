@@ -1,0 +1,15 @@
+#mainAnchor{
+    -fx-background-image: url('../logo1.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: stretch;
+    -fx-font-family: "Roboto Black";
+}
+
+.properties{
+    -fx-border-radius: 8px;
+    -fx-font-size: 16px;
+}
+.properties:hover{
+    -fx-background-color: #008CBA;
+    -fx-text-fill: white;
+}

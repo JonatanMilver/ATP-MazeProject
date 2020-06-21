@@ -16,11 +16,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ATPMazeMaven" />
+        <module name="JavaFXATP" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ATPMazeMaven" target="1.5" />
+      <module name="JavaFXATP" target="" />
     </bytecodeTargetLevel>
   </component>
 </project>
