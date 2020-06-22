@@ -1,5 +1,4 @@
 package View;
-
 import Model.MyModel;
 import ViewModel.MyViewModel;
 import javafx.application.Application;
@@ -10,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import org.apache.log4j.*;
+
 
 
 import java.io.FileInputStream;
@@ -18,10 +17,9 @@ import java.io.FileInputStream;
 
 
 public class Main extends Application {
-    static final Logger logger = Logger.getLogger(Main.class);
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../MyView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MyView.fxml"));
         Parent root = loader.load();
         MyModel model = MyModel.getInstance();
         MyViewModel viewModel = MyViewModel.getInstance();
@@ -32,14 +30,6 @@ public class Main extends Application {
             model.stopServers();
         });
 
-//        BasicConfigurator.configure();
-//        RollingFileAppender app = new RollingFileAppender();
-//        logger.debug("this is debug");
-//        logger.info("info msg");
-//        logger.warn("warn msg");
-//        logger.fatal("fatal msg");
-//        logger.error("error msg");
-        System.out.println("check");
 
 
 

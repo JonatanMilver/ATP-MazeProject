@@ -20,7 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="JavaFXATP" target="" />
+      <module name="JavaFXATP" target="13.2" />
     </bytecodeTargetLevel>
   </component>
 </project>
