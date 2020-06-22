@@ -1,0 +1,22 @@
+AnchorPane{
+    -fx-background-color: #496F81;
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+
+Button:hover{
+    -fx-background-color: #008CBA;
+    -fx-text-fill: white;
+    -fx-border-radius: 12px;
+}
+Button{
+    -fx-background-color: none;
+    -fx-text-fill: black;
+    -fx-border-width: 2px;
+    -fx-border-color: #008CBA;
+    -fx-border-radius: 12px;
+}
+
+
+

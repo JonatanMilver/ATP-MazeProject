@@ -1,0 +1,77 @@
+#pane{
+    -fx-background-image: url("rafif-prawira-SgTLuX6t8Yo-unsplash.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+.headers{
+    -fx-effect: dropshadow(gaussian, black, 1.5, 2, 1.5, 2);
+}
+MenuBar{
+    -fx-background-color: #008CBA ;
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+.menuBars{
+    -fx-text-fill: white;
+
+}
+
+.menuBars:hover{
+    -fx-font-weight: bold;
+}
+
+.hints{
+    -fx-background-color: #496F81;
+}
+.hints > *.button-bar > *.container{
+    -fx-background-color: #496F81;
+}
+.hints > *.label.content{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+.hints *.header-panel{
+    -fx-background-color: #97C3D8;
+}
+.hints *.header-panel *.label{
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-fill: #292929;
+}
+
+.menu-button > .arrow-button {
+    -fx-padding: 0;
+}
+
+.menu-button > .arrow-button > .arrow {
+    -fx-padding: 0;
+}
+.menu-button{
+    -fx-border-color: #008CBA;
+    -fx-border-width: 1px;
+    -fx-border-radius: 1px;
+    -fx-background-color: white;
+}
+.menu-button:hover{
+    -fx-background-color: #008CBA;
+    -fx-text-fill: white;
+}
+.menu-button1{
+    -fx-border-color: #008CBA;
+    -fx-border-width: 1px;
+    -fx-border-radius: 1px;
+    -fx-background-color: white;
+}
+.menu-button1:hover{
+    -fx-background-color: #008CBA;
+    -fx-text-fill: white;
+}
+
+
+
+

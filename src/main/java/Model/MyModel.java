@@ -9,6 +9,9 @@ import Server.ServerStrategyGenerateMaze;
 import Server.ServerStrategySolveSearchProblem;
 import algorithms.mazeGenerators.Maze;
 import algorithms.search.Solution;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.*;
 import java.net.InetAddress;
 import java.util.Observable;
@@ -20,6 +23,7 @@ public class MyModel extends Observable implements IModel {
     private Solution solution;
     private Server generateServer;
     private Server solveServer;
+    private static final Logger LOG = LogManager.getLogger(); //Log4j2
 
 
     public void setMazeIsSolved(boolean mazeIsSolved) {
@@ -65,6 +69,7 @@ public class MyModel extends Observable implements IModel {
             Client client = new Client(InetAddress.getLocalHost(), 5400, new IClientStrategy() {
                 public void clientStrategy(InputStream inputStream, OutputStream outputStream){
                     try{
+
                         ObjectOutputStream toServer = new ObjectOutputStream(outputStream);
                         ObjectInputStream fromServer = new ObjectInputStream(inputStream);
                         toServer.flush();
@@ -78,18 +83,25 @@ public class MyModel extends Observable implements IModel {
                         maze = new Maze(decompressedMaze);
                         playerCurrentRow = maze.getStartPosition().getRowIndex() * 2;
                         playerCurrentCol = maze.getStartPosition().getColumnIndex() * 2;
+                        LOG.info("Generating maze using " + Server.getConfigurations("GeneratingAlgorithm"));
+                        LOG.info("A maze with " + rows + " rows and " + columns + " columns was created");
+                        LOG.info("Starting position is at: [" + maze.getStartPosition().getRowIndex()*2 + ", " + maze.getStartPosition().getColumnIndex()*2 + "]");
+                        LOG.info("Goal position is at: [" + maze.getGoalPosition().getRowIndex()*2 + ", " + maze.getGoalPosition().getColumnIndex()*2 + "]");
                        // maze.print();
 
                     }
                     catch(IOException | ClassNotFoundException e){
                         e.printStackTrace();
+                        LOG.error("Client connection failed.");
                     }
                 }
             });
             client.communicateWithServer();
+            LOG.info("Client" + client.getHost() + " is connected to the server at port 5400.");
         }
         catch (IOException e){
             e.printStackTrace();
+            LOG.error("Generating server didn't manage to generate a maze.");
         }
         setChanged();
         notifyObservers("GENERATE");
@@ -108,15 +120,20 @@ public class MyModel extends Observable implements IModel {
                        toServer.writeObject(maze); //send maze to server
                        toServer.flush();
                        solution = (Solution) fromServer.readObject(); //read generated maze (compressed with MyCompressor) from server
+                       LOG.info("Solution length is " + solution.getSolutionPath().size());
+                       LOG.info("Solving algorithm is " + Server.getConfigurations("SearchingAlgorithm"));
                    } catch (Exception e) {
                        e.printStackTrace();
+                       LOG.error("Client connection failed.");
                    }
                }
            });
             client.communicateWithServer();
+            LOG.info("Client" + client.getHost() + " is connected to the server at port 5401.");
         }
         catch(IOException e){
             e.printStackTrace();
+            LOG.error("Solving server didn't manage to give a solution.");
         }
         setChanged();
         notifyObservers("SOLVE");
@@ -133,6 +150,11 @@ public class MyModel extends Observable implements IModel {
         playerCurrentCol = maze.getStartPosition().getColumnIndex() * 2;
         setChanged();
         notifyObservers("LOAD");
+
+    }
+
+    public static Logger getLOG() {
+        return LOG;
     }
 
     public Solution getSolution() {
@@ -226,6 +248,7 @@ public class MyModel extends Observable implements IModel {
     }
 
     public void restartMaze() {
+        LOG.info("Client has solved the maze.");
         mazeIsSolved = false;
         playerCurrentRow = maze.getStartPosition().getRowIndex() * 2;
         playerCurrentCol = maze.getStartPosition().getColumnIndex() * 2;
@@ -235,6 +258,8 @@ public class MyModel extends Observable implements IModel {
 
     public void stopServers(){
         generateServer.stop();
+        LOG.info("GENERATING server is being closed.");
         solveServer.stop();
+        LOG.info("SOLVING server is being closed.");
     }
 }

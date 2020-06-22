@@ -3,15 +3,11 @@ package ViewModel;
 import Model.MyModel;
 import algorithms.mazeGenerators.Maze;
 import algorithms.search.Solution;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.input.KeyEvent;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -75,8 +71,6 @@ public class MyViewModel extends Observable implements Observer {
             setChanged();
             notifyObservers("INVALIDINPUT");
         }
-        //maze = model.getMaze();
-
     }
 
     public boolean checkValidInput(String rows, String columns){
@@ -102,7 +96,6 @@ public class MyViewModel extends Observable implements Observer {
      */
     public void solveMaze(){
         this.model.solveMaze(model.getMaze());
-        //solution =  model.getSolution();
     }
 
     /**
@@ -120,9 +113,11 @@ public class MyViewModel extends Observable implements Observer {
             }
         }
         catch(ClassNotFoundException | IOException e){
+            MyModel.getLOG().error("Client tried to load a maze but failed.");
             setChanged();
             notifyObservers("NULLMAZE");
-            }
+
+        }
 
     }
 

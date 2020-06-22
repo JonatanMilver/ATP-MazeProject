@@ -8,12 +8,14 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -27,10 +29,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+
+import java.io.*;
 import java.net.URL;
 import java.util.*;
 
@@ -54,7 +54,7 @@ public class NewPage extends AView implements Initializable {
     private MenuItem michaelJordan;
     @FXML
     private MenuItem whiskey;
-    private int storyNumber = 0;
+    private int storyNumber = 1;
     @FXML
     private Slider volumeSlider;
 
@@ -99,76 +99,24 @@ public class NewPage extends AView implements Initializable {
         }
     }
 
-    @Override
-    public void handleSaveButton() {
-        FileChooser fileChooser = new FileChooser();
+    public void zoomInAndOut() {
+        bPane.setOnScroll(new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent scrollEvent) {
+                double zoomFactor = 1.05;
+                double deltaY = scrollEvent.getDeltaY();
 
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("maze files (*.maze)", "*.maze");
-        fileChooser.getExtensionFilters().add(extFilter);
-
-        Maze mazeToSave = viewModel.getMaze();
-        if(mazeToSave == null){
-            Alert noMaze = new Alert(Alert.AlertType.ERROR, "There is no maze to save!");
-            noMaze.show();
-            return;
-        }
-
-        File file = fileChooser.showSaveDialog(stage);
-
-        //need to check if person closes (X) the file chooser!!!
-        if(file != null) {
-            writeMazeToFile(mazeToSave, file.getPath());
-        }
+                if (deltaY < 0) {
+                    zoomFactor = 0.95;
+                }
+                bPane.setScaleX(bPane.getScaleX() * zoomFactor);
+                bPane.setScaleY(bPane.getScaleY() * zoomFactor);
+            }
+        });
     }
 
-    private void writeMazeToFile(Maze mazeFromClient , String path) {
-        try {
-            FileOutputStream file = new FileOutputStream(path);
-            ObjectOutputStream oos = new ObjectOutputStream(file);
-            oos.writeObject(mazeFromClient);
-            oos.flush();
-            oos.close();
-            file.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void handleAboutButton() {
-        Stage aboutStage = openNewStage("AboutUs.fxml","About",500,405);
-        aboutStage.show();
-    }
-
-    @Override
-    public void handlePropertiesButton() {
-        Stage propertiesStage = openNewStage("Properties.fxml", "Properties", 535,299);
-        propertiesStage.show();
-    }
-
-    @Override
-    public void handleHelpButton() {
-        String hints =
-                "* You nead to reach the goal position\n" +
-                        "* You can not go through walls\n" +
-                        "* Whenever help is needed, press the SOLVE button in order to get the solution\n" +
-                        "* You can go anywhere by your possition if possible\n" +
-                        "* Possible steps are: Up, Down, Left, Right and Diagonally.\n" +
-                        "* Diagonal steps are up-left, up-right, down-left, down-right only if these steps are possible."
-                ;
-        Alert dialogBox = new Alert(Alert.AlertType.INFORMATION, hints, ButtonType.OK);
-        dialogBox.setHeaderText("TIPS AND HINTS");
-
-        dialogBox.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-        dialogBox.setResizable(true);
-        dialogBox.setTitle("Help");
-        DialogPane dialogPane = dialogBox.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("../view.css").toExternalForm());
-        dialogPane.getStyleClass().add("hints");
 
 
-        dialogBox.show();
-    }
 
     public void changeToMazeScene(MouseEvent mouseEvent) {
         if (mouseEvent.getSource() == generateButton){
@@ -178,8 +126,6 @@ public class NewPage extends AView implements Initializable {
 
         }
     }
-
-
 
     public void drawmaze(String rows, String columns) {
         viewModel.generateMaze(rows,columns);
@@ -249,32 +195,45 @@ public class NewPage extends AView implements Initializable {
                 ButtonType WooHoo = new ButtonType("WooHoo!!");
                 Alert alert = new Alert(Alert.AlertType.NONE, "",WooHoo);
                 Button end = (Button)alert.getDialogPane().lookupButton(WooHoo);
-                end.setAlignment(Pos.CENTER_LEFT);
-                Media winningVideo = new Media(new File("resources/JordanSolve.mp4").toURI().toString());
-                MediaPlayer mp = new MediaPlayer(winningVideo);
 
-                MediaView mv = new MediaView(mp);
-                VBox content = new VBox(0.001, mv);
-                mp.setOnEndOfMedia(new Runnable() {
-                    @Override
-                    public void run() {
-                        mp.seek(Duration.ZERO);
-                    }
-                });
-                content.setAlignment(Pos.CENTER);
-                alert.getDialogPane().setContent(content);
-                alert.getDialogPane().setMinHeight(600);
-                alert.getDialogPane().setMinWidth(700);
-                alert.getDialogPane().getScene().getWindow().setOnCloseRequest(event ->{
-                    mp.stop();
+                Media winningVideo = null;
+                if(storyNumber == 1)
+                    winningVideo= new Media(new File("resources/JordanSolve.mp4").toURI().toString());
+                else if(storyNumber == 2)
+                    winningVideo = new Media(new File("resources/WhiskeySolve.mp4").toURI().toString());
+                MediaPlayer mpWinning = new MediaPlayer(winningVideo);
+
+                MediaView mv = new MediaView(mpWinning);
+                VBox vBox = new VBox(0.001, mv);
+                vBox.getChildren().add(end);
+                end.setAlignment(Pos.CENTER_LEFT);
+                end.setOnAction(e->{
+                    mpWinning.stop();
                     alert.close();
                 });
-                mp.play();
+                mpWinning.setOnEndOfMedia(new Runnable() {
+                    @Override
+                    public void run() {
+                        mpWinning.seek(Duration.ZERO);
+                    }
+                });
+                vBox.setAlignment(Pos.CENTER_LEFT);
+                alert.getDialogPane().setContent(vBox);
+                alert.getDialogPane().setMinHeight(600);
+                alert.getDialogPane().setMinWidth(700);
+                alert.setResizable(true);
+                alert.getDialogPane().getScene().getWindow().setOnCloseRequest(event ->{
+                    mpWinning.stop();
+                    alert.close();
+                });
+                mpWinning.play();
                 alert.showAndWait();
                 restartMaze();
             }
         }
         else if(operation.equals("LOAD")){
+            bPane.setVisible(true);
+            mazeDisplayer.setVisible(true);
             drawLoadedMaze();
             showSolution.setVisible(true);
         }
@@ -333,9 +292,11 @@ public class NewPage extends AView implements Initializable {
         mazeDisplayer.setWidth(Screen.getPrimary().getBounds().getWidth()-154);
         mazeDisplayer.setHeight(Screen.getPrimary().getBounds().getHeight()-30-100);
 
+        zoomInAndOut();
         listenToResize();
         volumeSlider.setMin(0);
         volumeSlider.setMax(1);
+        volumeSlider.setValue(0.2);
 
         ArrayList<String> musicList = new ArrayList<>();
         musicList.add(new File("resources/_91nova-Hotbox.mp3").toURI().toString());
@@ -394,12 +355,7 @@ public class NewPage extends AView implements Initializable {
         viewModel.solveMaze();
     }
 
-    private static void configureFileChooser(final FileChooser fileChooser){
-        fileChooser.setTitle("Choose a maze");
-        fileChooser.setInitialDirectory(
-                new File(System.getProperty("java.io.tmpdir"))
-        );
-    }
+
 
 
 
@@ -408,7 +364,6 @@ public class NewPage extends AView implements Initializable {
         mp = new MediaPlayer(media);
         currentSong.setText(mediaFile.substring(mediaFile.lastIndexOf('/')+1));
         musicMV.setMediaPlayer(mp);
-        volumeSlider.setValue(0.2);
         mp.play();
         mp.setOnEndOfMedia(new Runnable() {
             @Override

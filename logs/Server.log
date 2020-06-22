@@ -1,0 +1,24 @@
+2020.06.22 15:19:04.987 INFO  Model.MyModel - Client is connected to the server at port 5400.
+2020.06.22 15:19:13.544 INFO  Model.MyModel - Client is connected to the server at port 5401.
+2020.06.22 15:19:21.632 INFO  Model.MyModel - Client has solved the maze.
+2020.06.22 15:37:37.870 INFO  Model.MyModel - Client is connected to the server at port 5400.
+2020.06.22 15:39:02.234 INFO  Model.MyModel - Client is connected to the server at port 5400.
+2020.06.22 15:40:58.239 INFO  Model.MyModel - Client is connected to the server at port 5400.
+2020.06.22 15:42:43.888 INFO  Model.MyModel - Client is connected to the server at port 5400.
+2020.06.22 15:43:53.266 INFO  Model.MyModel - Client is connected to the server at port 5400.
+2020.06.22 16:02:09.913 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@5b2656b9
+2020.06.22 16:02:09.917 INFO  Model.MyModel - A maze with 5rows and 5columns was created
+2020.06.22 16:02:09.918 INFO  Model.MyModel - Starting position is at: [0, 6]
+2020.06.22 16:02:09.919 INFO  Model.MyModel - Goal position is at: [8, 8]
+2020.06.22 16:02:09.919 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19is connected to the server at port 5400.
+2020.06.22 16:03:10.826 INFO  Model.MyModel - Solution length is 5
+2020.06.22 16:03:10.827 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.22 16:03:10.827 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19is connected to the server at port 5401.
+2020.06.22 16:03:53.010 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@4a8fed25
+2020.06.22 16:03:53.014 INFO  Model.MyModel - A maze with 3 rows and 3 columns was created
+2020.06.22 16:03:53.015 INFO  Model.MyModel - Starting position is at: [0, 0]
+2020.06.22 16:03:53.016 INFO  Model.MyModel - Goal position is at: [4, 4]
+2020.06.22 16:03:53.017 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.22 16:03:57.960 INFO  Model.MyModel - Solution length is 4
+2020.06.22 16:03:57.961 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.22 16:03:57.961 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.

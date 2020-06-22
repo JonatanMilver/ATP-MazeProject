@@ -66,11 +66,6 @@ public class MazeDisplayer extends Canvas {
         this.maze = maze1;
     }
 
-    //    public void drawMaze(int [][] maze)
-//    {
-//        this.maze = maze;
-//        draw();
-//    }
     public void drawMaze(Maze maze)
     {
 
