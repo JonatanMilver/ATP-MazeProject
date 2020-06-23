@@ -85,6 +85,8 @@ public class MyViewModel extends Observable implements Observer {
         }
         if(rowsCheck <= 1 || columnsCheck <= 1)
             return false;
+        if(rowsCheck > 500 || columnsCheck > 500)
+            return false;
 
         return true;
 

@@ -9,7 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+import javax.swing.filechooser.FileSystemView;
 import java.io.*;
 import java.util.Observable;
 import java.util.Observer;
@@ -29,7 +29,7 @@ public abstract class AView implements IView, Observer {
     public Stage openNewStage(String fxmlFileName, String stageTitle, double v, double v1){
         Stage newStage = new Stage();
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../" + fxmlFileName));
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlFileName));
             newStage.setTitle(stageTitle);
             newStage.setScene(new Scene(root, v, v1));
 
@@ -59,14 +59,33 @@ public abstract class AView implements IView, Observer {
     protected static void configureFileChooser(final FileChooser fileChooser){
         fileChooser.setTitle("Choose a maze");
         fileChooser.setInitialDirectory(
-                new File(System.getProperty("java.io.tmpdir"))
+                new File(FileSystemView.getFileSystemView().getHomeDirectory().getAbsolutePath())
         );
+    }
+
+    public boolean checkIfFileIsMaze(File file){
+        if (file == null){
+            showAlert(Alert.AlertType.WARNING , "file is Null!");
+            return false;
+        }
+        String filePath = file.getPath();
+        String fileExtension = filePath.substring(filePath.lastIndexOf('.'));
+        if(!fileExtension.contains(".maze")) {
+            showAlert(Alert.AlertType.WARNING,"Chosen file is not a maze!");
+            return false;
+        }
+        return true;
+    }
+
+    public void showAlert(Alert.AlertType alertType , String s){
+        Alert alert = new Alert(alertType, s);
+        alert.show();
     }
 
     @Override
     public void handleSaveButton() {
         FileChooser fileChooser = new FileChooser();
-
+        configureFileChooser(fileChooser);
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("maze files (*.maze)", "*.maze");
         fileChooser.getExtensionFilters().add(extFilter);
 
@@ -100,9 +119,9 @@ public abstract class AView implements IView, Observer {
 
     @Override
     public void handleAboutButton() {
-        Stage aboutStage = openNewStage("View/AboutUs.fxml","About",500,405);
+        Stage aboutStage = openNewStage("AboutUs1.fxml","About",707,619);
         try {
-            aboutStage.getIcons().add(new javafx.scene.image.Image(new FileInputStream("resources/puzzle.png")));
+            aboutStage.getIcons().add(new javafx.scene.image.Image(new FileInputStream("resources/Pictures/puzzle.png")));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -111,9 +130,9 @@ public abstract class AView implements IView, Observer {
 
     @Override
     public void handlePropertiesButton() {
-        Stage propertiesStage = openNewStage("View/Properties.fxml", "Properties", 535,299);
+        Stage propertiesStage = openNewStage("Properties.fxml", "Properties", 535,299);
         try {
-            propertiesStage.getIcons().add(new javafx.scene.image.Image(new FileInputStream("resources/puzzle.png")));
+            propertiesStage.getIcons().add(new javafx.scene.image.Image(new FileInputStream("resources/Pictures/puzzle.png")));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -123,12 +142,19 @@ public abstract class AView implements IView, Observer {
     @Override
     public void handleHelpButton() {
         String hints =
-                "* You nead to reach the goal position\n" +
-                        "* You can not go through walls\n" +
-                        "* Whenever help is needed, press the SOLVE button in order to get the solution\n" +
-                        "* You can go anywhere by your possition if possible\n" +
+                        "* To start a new game, enter the amount of rows and columns and then press the 'Generate' button.\n" +
+                        "* You can save the maze you've just started at any time and reload it whenever you want. \n"+
+                        "* By saving a maze, your current position would not be save, only the maze itself.\n"+
+                        "* In order to save a maze press File->Save and choose your maze's name.\n"+
+                        "* If you have a maze that you want to continue solving, press File->Load and there you go!.\n "+
+                        "* You need to reach the goal position.\n" +
+                        "* You can not go through walls.\n" +
+                        "* Whenever help is needed, press the Show Solution button in order to get the solution.\n" +
+                        "* You can go anywhere by your position if possible.\n" +
                         "* Possible steps are: Up, Down, Left, Right and Diagonally.\n" +
-                        "* Diagonal steps are up-left, up-right, down-left, down-right only if these steps are possible."
+                        "* Diagonal steps are up-left, up-right, down-left, down-right - only if these steps are possible.\n"+
+                        "* Choose a story you want to be a part of by pressing the bar under 'Choose a story'.\n "+
+                        "* It is worth reaching the goal - there is a cool video waiting for you!\n"
                 ;
         Alert dialogBox = new Alert(Alert.AlertType.INFORMATION, hints, ButtonType.OK);
         dialogBox.setHeaderText("TIPS AND HINTS");
@@ -137,7 +163,7 @@ public abstract class AView implements IView, Observer {
         dialogBox.setResizable(true);
         dialogBox.setTitle("Help");
         DialogPane dialogPane = dialogBox.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("../view.css").toExternalForm());
+        dialogPane.getStylesheets().add(getClass().getResource("view.css").toExternalForm());
         dialogPane.getStyleClass().add("hints");
 
 

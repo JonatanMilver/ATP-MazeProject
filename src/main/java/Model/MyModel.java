@@ -16,24 +16,25 @@ import java.io.*;
 import java.net.InetAddress;
 import java.util.Observable;
 
-
+/**
+ * The class that holds the generating and solving logic.
+ */
 public class MyModel extends Observable implements IModel {
 
     private Maze maze;
     private Solution solution;
     private Server generateServer;
     private Server solveServer;
-    private static final Logger LOG = LogManager.getLogger(); //Log4j2
+    private boolean mazeIsSolved;
+    private static MyModel myModel;
+    private int playerCurrentRow;
+    private int playerCurrentCol;
+    private static final Logger LOG = LogManager.getLogger();
 
 
     public void setMazeIsSolved(boolean mazeIsSolved) {
         this.mazeIsSolved = mazeIsSolved;
     }
-
-    private boolean mazeIsSolved;
-    private static MyModel myModel;
-    private int playerCurrentRow;
-    private int playerCurrentCol;
 
     public int getPlayerCurrentRow() {
         return playerCurrentRow;
@@ -57,12 +58,22 @@ public class MyModel extends Observable implements IModel {
         Server.setConfigurations("SearchingAlgorithm", "Best First Search");
     }
 
+    /**
+     * Static function, implementing Singleton.
+     * @return MyModel
+     */
     public static MyModel getInstance(){
         if(myModel == null)
             myModel = new MyModel();
         return myModel;
     }
 
+    /**
+     * Generates the maze given rows and columns.
+     * Updates 'maze' field, 'playerCurrentRow' as Start index row and 'playerCurrentColumn' as start index column.
+     * @param rows int
+     * @param columns int
+     */
     @Override
     public void generateMaze(int rows, int columns) {
         try{
@@ -87,7 +98,6 @@ public class MyModel extends Observable implements IModel {
                         LOG.info("A maze with " + rows + " rows and " + columns + " columns was created");
                         LOG.info("Starting position is at: [" + maze.getStartPosition().getRowIndex()*2 + ", " + maze.getStartPosition().getColumnIndex()*2 + "]");
                         LOG.info("Goal position is at: [" + maze.getGoalPosition().getRowIndex()*2 + ", " + maze.getGoalPosition().getColumnIndex()*2 + "]");
-                       // maze.print();
 
                     }
                     catch(IOException | ClassNotFoundException e){
@@ -107,6 +117,10 @@ public class MyModel extends Observable implements IModel {
         notifyObservers("GENERATE");
     }
 
+    /**
+     * Solves a given maze, updates 'solution' field.
+     * @param maze Maze
+     */
     @Override
     public void solveMaze(Maze maze) {
         try{
@@ -143,11 +157,20 @@ public class MyModel extends Observable implements IModel {
     public Maze getMaze() {
         return maze;
     }
+
+    /**
+     * Sets given maze while users LOADS a maze.
+     * @param maze Maze
+     */
     @Override
     public void setMaze(Maze maze) {
         this.maze = maze;
         playerCurrentRow = maze.getStartPosition().getRowIndex() * 2;
         playerCurrentCol = maze.getStartPosition().getColumnIndex() * 2;
+        LOG.info("Generating maze using " + Server.getConfigurations("GeneratingAlgorithm"));
+        LOG.info("A maze with " + maze.getRows() + " rows and " + maze.getColumns() + " columns was created");
+        LOG.info("Starting position is at: [" + maze.getStartPosition().getRowIndex() * 2 + ", " + maze.getStartPosition().getColumnIndex() * 2 + "]");
+        LOG.info("Goal position is at: [" + maze.getGoalPosition().getRowIndex() * 2 + ", " + maze.getGoalPosition().getColumnIndex() * 2 + "]");
         setChanged();
         notifyObservers("LOAD");
 
@@ -162,6 +185,11 @@ public class MyModel extends Observable implements IModel {
     }
 
 
+    /**
+     * Checks whether a user can move to a given direction.
+     * @param direction String
+     * @return boolean
+     */
     private boolean canMove(String direction) {
         int currRow = playerCurrentRow;
         int currCol = playerCurrentCol;
@@ -193,6 +221,11 @@ public class MyModel extends Observable implements IModel {
             return false;
         }
     }
+
+    /**
+     * Updates Character's location with given direction.
+     * @param direction String
+     */
     @Override
     public void updateCharacterLocation(String direction)
     {
@@ -203,7 +236,6 @@ public class MyModel extends Observable implements IModel {
                     playerCurrentRow--;
                 }
                 break;
-
             case "DOWN": //Down
                 if(canMove("DOWN"))
                     playerCurrentRow++;
@@ -247,6 +279,10 @@ public class MyModel extends Observable implements IModel {
         notifyObservers("MOVE");
     }
 
+    /**
+     * Sets the character to it's start position.
+     * This method is being called only when user solves the maze.
+     */
     public void restartMaze() {
         LOG.info("Client has solved the maze.");
         mazeIsSolved = false;
@@ -256,6 +292,9 @@ public class MyModel extends Observable implements IModel {
         notifyObservers("GENERATE");
     }
 
+    /**
+     * Stops the servers while application is being closed.
+     */
     public void stopServers(){
         generateServer.stop();
         LOG.info("GENERATING server is being closed.");

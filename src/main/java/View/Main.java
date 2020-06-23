@@ -32,15 +32,12 @@ public class Main extends Application {
 
 
 
-
-
-
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         primaryStage.setTitle("Let's Maze");
-        primaryStage.setScene(new Scene(root, screenBounds.getWidth(), screenBounds.getHeight()-100));
+        primaryStage.setScene(new Scene(root, 501, 404));
         primaryStage.setResizable(true);
         Platform.setImplicitExit(true);
-        primaryStage.getIcons().add(new javafx.scene.image.Image(new FileInputStream("resources/puzzle.png")));
+        primaryStage.getIcons().add(new javafx.scene.image.Image(new FileInputStream("resources/Pictures/puzzle.png")));
 
 
         primaryStage.show();
