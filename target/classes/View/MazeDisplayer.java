@@ -21,24 +21,24 @@ public class MazeDisplayer extends Canvas {
     private int playerRow;
     private int playerColumn;
 
-    private String endImagePath = "resources/basket.jpg";
-    private String playerImagePath = "resources/jordan1.png";
-    private String wallImagePath = "resources/bird1.png";
-    private String solutionImagePath = "resources/basketballSteps-removebg-preview.png";
+    private String endImagePath = "resources/Pictures/basket.jpg";
+    private String playerImagePath = "resources/Pictures/jordan1.png";
+    private String wallImagePath = "resources/Pictures/bird1.png";
+    private String solutionImagePath = "resources/Pictures/basketballSteps-removebg-preview.png";
     private boolean askedToShowSolution =false;
 
     public void chooseStorytoFillMaze(int storyNumber){
         if(storyNumber == 1){
-            wallImagePath = "resources/bird1.png";
-            endImagePath = "resources/basket.jpg";
-            playerImagePath = "resources/jordan1.png";
-            solutionImagePath = "resources/basketballSteps-removebg-preview.png";
+            wallImagePath = "resources/Pictures/bird1.png";
+            endImagePath = "resources/Pictures/basket.jpg";
+            playerImagePath = "resources/Pictures/jordan1.png";
+            solutionImagePath = "resources/Pictures/basketballSteps-removebg-preview.png";
         }
         else if(storyNumber == 2){
-            wallImagePath = "resources/poop_emoji1-removebg-preview.png";
-            endImagePath = "resources/steak.jpg";
-            playerImagePath = "resources/whiskey1.png";
-            solutionImagePath = "resources/footprint__2_-removebg-preview.png";
+            wallImagePath = "resources/Pictures/poop_emoji1-removebg-preview.png";
+            endImagePath = "resources/Pictures/steak.jpg";
+            playerImagePath = "resources/Pictures/whiskey1.png";
+            solutionImagePath = "resources/Pictures/footprint__2_-removebg-preview.png";
         }
     }
 
@@ -68,7 +68,6 @@ public class MazeDisplayer extends Canvas {
 
     public void drawMaze(Maze maze)
     {
-
         this.maze = maze;
         playerRow = this.maze.getStartPosition().getRowIndex() * 2;
         playerColumn = this.maze.getStartPosition().getColumnIndex() * 2;

@@ -1,15 +1,12 @@
 package View;
 
 import Server.Server;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-
-import java.awt.event.MouseEvent;
 
 public class Properties extends AView {
     @FXML

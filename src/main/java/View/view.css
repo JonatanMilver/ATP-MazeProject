@@ -1,5 +1,5 @@
 #pane{
-    -fx-background-image: url("rafif-prawira-SgTLuX6t8Yo-unsplash.jpg");
+    -fx-background-image: url("../rafif-prawira-SgTLuX6t8Yo-unsplash.jpg");
     -fx-background-repeat: stretch;
     -fx-background-size: cover;
     -fx-background-position: center center;
@@ -71,6 +71,7 @@ MenuBar{
     -fx-background-color: #008CBA;
     -fx-text-fill: white;
 }
+
 
 
 
