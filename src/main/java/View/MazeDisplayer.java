@@ -6,10 +6,7 @@ import algorithms.search.MazeState;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.stage.Screen;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -17,16 +14,18 @@ import java.util.ArrayList;
 public class MazeDisplayer extends Canvas {
     Maze maze;
     int[][] mazeArr;
-
     private int playerRow;
     private int playerColumn;
-
     private String endImagePath = "resources/Pictures/basket.jpg";
     private String playerImagePath = "resources/Pictures/jordan1.png";
     private String wallImagePath = "resources/Pictures/bird1.png";
     private String solutionImagePath = "resources/Pictures/basketballSteps-removebg-preview.png";
     private boolean askedToShowSolution =false;
 
+    /**
+     * Sets maze's images according to the story number.
+     * @param storyNumber int
+     */
     public void chooseStorytoFillMaze(int storyNumber){
         if(storyNumber == 1){
             wallImagePath = "resources/Pictures/bird1.png";
@@ -42,22 +41,6 @@ public class MazeDisplayer extends Canvas {
         }
     }
 
-    public int getPlayerRow() {
-        return playerRow;
-    }
-
-    public void setPlayerRow(int playerRow) {
-        this.playerRow = playerRow;
-    }
-
-    public int getPlayerColumn() {
-        return playerColumn;
-    }
-
-    public void setPlayerColumn(int playerColumn) {
-        this.playerColumn = playerColumn;
-    }
-
     public Maze getMaze() {
         return maze;
     }
@@ -66,6 +49,10 @@ public class MazeDisplayer extends Canvas {
         this.maze = maze1;
     }
 
+    /**
+     * Sets maze and player's position and calls draw() function to draw the maze.
+     * @param maze Maze
+     */
     public void drawMaze(Maze maze)
     {
         this.maze = maze;
@@ -74,6 +61,9 @@ public class MazeDisplayer extends Canvas {
         draw();
     }
 
+    /**
+     * Draws the maze.
+     */
     public void draw()
     {
         mazeArr = maze.getMazeArr();
@@ -131,6 +121,11 @@ public class MazeDisplayer extends Canvas {
         }
     }
 
+    /**
+     * Sets player's new position on the maze.
+     * @param row int
+     * @param col int
+     */
     public void set_player_position(int row, int col){
         this.playerRow = row;
         this.playerColumn = col;
@@ -140,6 +135,10 @@ public class MazeDisplayer extends Canvas {
     }
 
 
+    /**
+     * draws solution on the maze according to the given path.
+     * @param solutionPath ArratList of AState
+     */
     public void drawSolution(ArrayList<AState> solutionPath) {
         double canvasHeight = getHeight();
         double canvasWidth = getWidth();
@@ -171,6 +170,11 @@ public class MazeDisplayer extends Canvas {
             prevColIndex = currColIndex;
         }
     }
+
+    /**
+     * Checks whether the user asked to show the solution or hide it and draws or hides the solution.
+     * @param solutionPath ArrayList of AState
+     */
     public void askedToShowTheSolution(ArrayList<AState> solutionPath){
         if(askedToShowSolution) {
             drawSolution(solutionPath);
@@ -210,7 +214,6 @@ public class MazeDisplayer extends Canvas {
                 w = (currColIndex + 1) * cellWidth;
             }
             h = prevRowIndex * cellHeight;
-//            graphicsContext.fillRect(w,h, cellWidth, cellHeight);
             graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
         }
         /*Same column but the rows are different*/
@@ -223,7 +226,6 @@ public class MazeDisplayer extends Canvas {
                 w = (currColIndex ) * cellWidth;
                 h = (currRowIndex+1) * cellHeight;
             }
-//            graphicsContext.fillRect(w,h, cellWidth, cellHeight);
             graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
         }
         /*Both row and column of previous state at the path are smaller than current's row and column*/
@@ -234,7 +236,6 @@ public class MazeDisplayer extends Canvas {
                 while(colIndexToFill <= currColIndex){
                     w = colIndexToFill * cellWidth;
                     h = prevRowIndex * cellHeight;
-//                    graphicsContext.fillRect(w,h, cellWidth, cellHeight);
                     graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
                     colIndexToFill++;
                 }
@@ -242,7 +243,6 @@ public class MazeDisplayer extends Canvas {
                 colIndexToFill--;
                 w= colIndexToFill * cellWidth;
                 h = rowIndexToFill * cellHeight;
-//                graphicsContext.fillRect(w,h, cellWidth, cellHeight);
                 graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
             }
             /*The wall is at the right side of previous state*/
@@ -251,7 +251,6 @@ public class MazeDisplayer extends Canvas {
                 while(rowIndextoFill<= currRowIndex){
                     w = prevColIndex * cellWidth;
                     h = rowIndextoFill * cellHeight;
-//                    graphicsContext.fillRect(w,h, cellWidth, cellHeight);
                     graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
                     rowIndextoFill++;
                 }
@@ -259,7 +258,6 @@ public class MazeDisplayer extends Canvas {
                 rowIndextoFill--;
                 w = colIndexToFill * cellWidth;
                 h = rowIndextoFill * cellHeight;
-//                graphicsContext.fillRect(w,h, cellWidth, cellHeight);
                 graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
             }
         }
@@ -271,7 +269,6 @@ public class MazeDisplayer extends Canvas {
                 while(colIndexToFill <= prevColIndex){
                     w = colIndexToFill * cellWidth;
                     h = currRowIndex * cellHeight;
-//                    graphicsContext.fillRect(w,h, cellWidth, cellHeight);
                     graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
                     colIndexToFill++;
                 }
@@ -279,7 +276,6 @@ public class MazeDisplayer extends Canvas {
                 colIndexToFill--;
                 w= colIndexToFill * cellWidth;
                 h = rowIndexToFill * cellHeight;
-//                graphicsContext.fillRect(w,h, cellWidth, cellHeight);
                 graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
             }
             /*The wall is at the right side of current state*/
@@ -288,7 +284,6 @@ public class MazeDisplayer extends Canvas {
                 while(rowIndextoFill<= prevRowIndex){
                     w = currColIndex * cellWidth;
                     h = rowIndextoFill * cellHeight;
-//                    graphicsContext.fillRect(w,h, cellWidth, cellHeight);
                     graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
                     rowIndextoFill++;
                 }
@@ -296,7 +291,6 @@ public class MazeDisplayer extends Canvas {
                 rowIndextoFill--;
                 w = colIndexToFill * cellWidth;
                 h = rowIndextoFill * cellHeight;
-//                graphicsContext.fillRect(w,h, cellWidth, cellHeight);
                 graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
             }
         }
@@ -307,7 +301,6 @@ public class MazeDisplayer extends Canvas {
                 while(colIndexToFill >= currColIndex){
                     w = colIndexToFill * cellWidth;
                     h = prevRowIndex * cellHeight;
-//                    graphicsContext.fillRect(w,h, cellWidth, cellHeight);
                     graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
                     colIndexToFill--;
                 }
@@ -315,7 +308,6 @@ public class MazeDisplayer extends Canvas {
                 colIndexToFill++;
                 w= colIndexToFill * cellWidth;
                 h= rowIndexToFill * cellHeight;
-//                graphicsContext.fillRect(w,h, cellWidth, cellHeight);
                 graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
             }
             else{
@@ -323,7 +315,6 @@ public class MazeDisplayer extends Canvas {
                 while(rowIndexToFill <= currRowIndex){
                     w = prevColIndex * cellWidth;
                     h = rowIndexToFill * cellHeight;
-//                    graphicsContext.fillRect(w,h,cellWidth,cellHeight);
                     graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
                     rowIndexToFill++;
                 }
@@ -331,7 +322,6 @@ public class MazeDisplayer extends Canvas {
                 rowIndexToFill--;
                 w= colIndexToFill * cellWidth;
                 h = rowIndexToFill * cellHeight;
-//                graphicsContext.fillRect(w,h,cellWidth,cellHeight);
                 graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
             }
         }
@@ -342,7 +332,6 @@ public class MazeDisplayer extends Canvas {
                 while(colIndexToFill >= prevColIndex){
                     w = colIndexToFill * cellWidth;
                     h = currRowIndex * cellHeight;
-//                    graphicsContext.fillRect(w,h, cellWidth, cellHeight);
                     graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
                     colIndexToFill--;
                 }
@@ -350,7 +339,6 @@ public class MazeDisplayer extends Canvas {
                 colIndexToFill++;
                 w= colIndexToFill * cellWidth;
                 h= rowIndexToFill * cellHeight;
-//                graphicsContext.fillRect(w,h, cellWidth, cellHeight);
                 graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
             }
             else{
@@ -358,7 +346,6 @@ public class MazeDisplayer extends Canvas {
                 while(rowIndexToFill <= prevRowIndex){
                     w = currColIndex * cellWidth;
                     h= rowIndexToFill * cellHeight;
-//                    graphicsContext.fillRect(w,h,cellWidth,cellHeight);
                     graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
                     rowIndexToFill++;
                 }
@@ -366,11 +353,8 @@ public class MazeDisplayer extends Canvas {
                 rowIndexToFill--;
                 w= colIndexToFill * cellWidth;
                 h= rowIndexToFill * cellHeight;
-//                graphicsContext.fillRect(w,h,cellWidth,cellHeight);
                 graphicsContext.drawImage(solutionImg,w,h, cellWidth, cellHeight);
             }
         }
     }
-
-
 }

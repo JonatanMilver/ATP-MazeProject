@@ -48,6 +48,10 @@ public class MyViewModel extends Observable implements Observer {
         this.model = MyModel.getInstance();
     }
 
+    /**
+     * Static function, implementing Singleton.
+     * @return MyViewModel
+     */
     public static MyViewModel getInstance() {
         if (vm == null){
             vm = new MyViewModel();
@@ -73,6 +77,13 @@ public class MyViewModel extends Observable implements Observer {
         }
     }
 
+    /**
+     * Checks whether inserted input of rows and columns is valid.
+     * We do approve mazes of sizes bigger than 1x1 and smaller than 500x500.
+     * @param rows String
+     * @param columns String
+     * @return boolean
+     */
     public boolean checkValidInput(String rows, String columns){
         int rowsCheck = 0;
         int columnsCheck = 0;
@@ -118,12 +129,17 @@ public class MyViewModel extends Observable implements Observer {
             MyModel.getLOG().error("Client tried to load a maze but failed.");
             setChanged();
             notifyObservers("NULLMAZE");
-
         }
 
     }
 
 
+    /**
+     * Receives updates from MyModel and updates the relevant fields - this method is Overridden from the Observer interface.
+     * Notifies NewPage about the updates.
+     * @param o Observable
+     * @param arg (String)
+     */
     @Override
     public void update(java.util.Observable o, Object arg) {
         String operation = (String) arg;
@@ -155,10 +171,18 @@ public class MyViewModel extends Observable implements Observer {
     }
 
 
+    /**
+     * Calls MyModel's setMaze method.
+     * @param maze Maze
+     */
     public void setMaze(Maze maze){
         model.setMaze(maze);
     }
 
+    /**
+     * gets the event's press and passes it through to MyModel class.
+     * @param keyEvent KeyEvent
+     */
     public void moveCharacter(KeyEvent keyEvent) {
         String direction = "";
         switch (keyEvent.getCode()) {
@@ -189,6 +213,9 @@ public class MyViewModel extends Observable implements Observer {
         model.updateCharacterLocation(direction);
     }
 
+    /**
+     * Calls MyModel's restartMaze method.
+     */
     public void restartMaze() {
         model.restartMaze();
     }

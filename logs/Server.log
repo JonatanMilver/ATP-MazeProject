@@ -340,3 +340,339 @@
 2020.06.23 19:06:35.597 INFO  Model.MyModel - Solution length is 20
 2020.06.23 19:06:35.597 INFO  Model.MyModel - Solving algorithm is BFS
 2020.06.23 19:06:35.597 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.23 19:37:36.914 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@72aa4c24
+2020.06.23 19:37:36.919 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.23 19:37:36.919 INFO  Model.MyModel - Starting position is at: [8, 8]
+2020.06.23 19:37:36.919 INFO  Model.MyModel - Goal position is at: [0, 0]
+2020.06.23 19:37:36.920 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.23 19:38:16.117 INFO  Model.MyModel - Client has solved the maze.
+2020.06.23 19:38:19.305 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@669b8fd9
+2020.06.23 19:38:19.306 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.23 19:38:19.306 INFO  Model.MyModel - Starting position is at: [0, 6]
+2020.06.23 19:38:19.306 INFO  Model.MyModel - Goal position is at: [4, 8]
+2020.06.23 19:38:19.307 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.23 19:38:41.525 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 12:31:47.605 INFO  Model.MyModel - GENERATING server is being closed.
+2020.06.24 12:31:47.716 INFO  Model.MyModel - SOLVING server is being closed.
+2020.06.24 12:33:00.343 INFO  Model.MyModel - GENERATING server is being closed.
+2020.06.24 12:33:00.452 INFO  Model.MyModel - SOLVING server is being closed.
+2020.06.24 13:08:19.887 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@75ddbad0
+2020.06.24 13:08:19.895 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 13:08:19.895 INFO  Model.MyModel - Starting position is at: [2, 8]
+2020.06.24 13:08:19.896 INFO  Model.MyModel - Goal position is at: [0, 0]
+2020.06.24 13:08:19.897 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 13:09:20.116 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@4dcbd4d1
+2020.06.24 13:09:20.122 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 13:09:20.122 INFO  Model.MyModel - Starting position is at: [8, 6]
+2020.06.24 13:09:20.123 INFO  Model.MyModel - Goal position is at: [0, 8]
+2020.06.24 13:09:20.124 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 13:09:36.708 INFO  Model.MyModel - Solution length is 8
+2020.06.24 13:09:36.709 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 13:09:36.710 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 13:10:05.920 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@72aa4c24
+2020.06.24 13:10:05.928 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 13:10:05.929 INFO  Model.MyModel - Starting position is at: [4, 8]
+2020.06.24 13:10:05.930 INFO  Model.MyModel - Goal position is at: [0, 0]
+2020.06.24 13:10:05.931 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 13:11:56.302 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@59ad50b6
+2020.06.24 13:11:56.309 INFO  Model.MyModel - A maze with 6 rows and 6 columns was created
+2020.06.24 13:11:56.310 INFO  Model.MyModel - Starting position is at: [0, 2]
+2020.06.24 13:11:56.311 INFO  Model.MyModel - Goal position is at: [10, 4]
+2020.06.24 13:11:56.312 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 13:13:52.005 INFO  Model.MyModel - GENERATING server is being closed.
+2020.06.24 13:13:52.112 INFO  Model.MyModel - SOLVING server is being closed.
+2020.06.24 13:14:35.141 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@75f23bcb
+2020.06.24 13:14:35.150 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 13:14:35.151 INFO  Model.MyModel - Starting position is at: [0, 4]
+2020.06.24 13:14:35.151 INFO  Model.MyModel - Goal position is at: [8, 6]
+2020.06.24 13:14:35.152 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 13:14:48.734 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@2325df3d
+2020.06.24 13:14:48.735 INFO  Model.MyModel - A maze with 4 rows and 4 columns was created
+2020.06.24 13:14:48.735 INFO  Model.MyModel - Starting position is at: [4, 6]
+2020.06.24 13:14:48.736 INFO  Model.MyModel - Goal position is at: [0, 2]
+2020.06.24 13:15:04.598 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@3a1dc491
+2020.06.24 13:15:04.603 INFO  Model.MyModel - A maze with 4 rows and 4 columns was created
+2020.06.24 13:15:04.603 INFO  Model.MyModel - Starting position is at: [4, 6]
+2020.06.24 13:15:04.605 INFO  Model.MyModel - Goal position is at: [0, 2]
+2020.06.24 13:15:33.218 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@4a9e5114
+2020.06.24 13:15:33.222 INFO  Model.MyModel - A maze with 4 rows and 4 columns was created
+2020.06.24 13:15:33.222 INFO  Model.MyModel - Starting position is at: [4, 6]
+2020.06.24 13:15:33.223 INFO  Model.MyModel - Goal position is at: [0, 2]
+2020.06.24 13:15:48.748 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@2835aa8b
+2020.06.24 13:15:48.753 INFO  Model.MyModel - A maze with 6 rows and 5 columns was created
+2020.06.24 13:15:48.754 INFO  Model.MyModel - Starting position is at: [0, 0]
+2020.06.24 13:15:48.755 INFO  Model.MyModel - Goal position is at: [10, 4]
+2020.06.24 13:15:48.755 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 13:19:53.023 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@72aa4c24
+2020.06.24 13:19:53.031 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 13:19:53.031 INFO  Model.MyModel - Starting position is at: [0, 0]
+2020.06.24 13:19:53.031 INFO  Model.MyModel - Goal position is at: [8, 6]
+2020.06.24 13:19:53.032 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:14:53.071 INFO  Model.MyModel - GENERATING server is being closed.
+2020.06.24 14:14:53.175 INFO  Model.MyModel - SOLVING server is being closed.
+2020.06.24 14:15:04.883 INFO  Model.MyModel - GENERATING server is being closed.
+2020.06.24 14:15:04.986 INFO  Model.MyModel - SOLVING server is being closed.
+2020.06.24 14:17:33.430 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@6c065f72
+2020.06.24 14:17:33.434 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:33.435 INFO  Model.MyModel - Starting position is at: [8, 6]
+2020.06.24 14:17:33.435 INFO  Model.MyModel - Goal position is at: [2, 0]
+2020.06.24 14:17:33.436 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:36.591 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@13937993
+2020.06.24 14:17:36.591 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:36.591 INFO  Model.MyModel - Starting position is at: [8, 0]
+2020.06.24 14:17:36.591 INFO  Model.MyModel - Goal position is at: [0, 2]
+2020.06.24 14:17:36.591 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:37.255 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@24d94842
+2020.06.24 14:17:37.255 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:37.256 INFO  Model.MyModel - Starting position is at: [4, 0]
+2020.06.24 14:17:37.256 INFO  Model.MyModel - Goal position is at: [8, 8]
+2020.06.24 14:17:37.256 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:37.404 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@3171f088
+2020.06.24 14:17:37.404 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:37.404 INFO  Model.MyModel - Starting position is at: [6, 0]
+2020.06.24 14:17:37.405 INFO  Model.MyModel - Goal position is at: [8, 4]
+2020.06.24 14:17:37.405 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:37.543 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@ebaa552
+2020.06.24 14:17:37.544 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:37.544 INFO  Model.MyModel - Starting position is at: [0, 2]
+2020.06.24 14:17:37.544 INFO  Model.MyModel - Goal position is at: [8, 2]
+2020.06.24 14:17:37.544 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:37.690 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@2e769f4f
+2020.06.24 14:17:37.691 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:37.692 INFO  Model.MyModel - Starting position is at: [2, 0]
+2020.06.24 14:17:37.692 INFO  Model.MyModel - Goal position is at: [2, 8]
+2020.06.24 14:17:37.692 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:37.853 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@7d481ac1
+2020.06.24 14:17:37.854 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:37.854 INFO  Model.MyModel - Starting position is at: [8, 2]
+2020.06.24 14:17:37.854 INFO  Model.MyModel - Goal position is at: [0, 0]
+2020.06.24 14:17:37.854 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:37.996 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@50ec6321
+2020.06.24 14:17:37.997 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:37.997 INFO  Model.MyModel - Starting position is at: [8, 4]
+2020.06.24 14:17:37.997 INFO  Model.MyModel - Goal position is at: [0, 0]
+2020.06.24 14:17:37.998 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:38.139 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@1cbbcb2c
+2020.06.24 14:17:38.140 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:38.140 INFO  Model.MyModel - Starting position is at: [8, 4]
+2020.06.24 14:17:38.141 INFO  Model.MyModel - Goal position is at: [6, 0]
+2020.06.24 14:17:38.141 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:38.288 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@a55b02b
+2020.06.24 14:17:38.288 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:38.288 INFO  Model.MyModel - Starting position is at: [0, 4]
+2020.06.24 14:17:38.288 INFO  Model.MyModel - Goal position is at: [6, 0]
+2020.06.24 14:17:38.288 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:38.437 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@77e43298
+2020.06.24 14:17:38.437 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:38.437 INFO  Model.MyModel - Starting position is at: [8, 6]
+2020.06.24 14:17:38.438 INFO  Model.MyModel - Goal position is at: [2, 0]
+2020.06.24 14:17:38.438 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:38.571 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@3b891b6d
+2020.06.24 14:17:38.571 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:38.571 INFO  Model.MyModel - Starting position is at: [4, 8]
+2020.06.24 14:17:38.571 INFO  Model.MyModel - Goal position is at: [0, 0]
+2020.06.24 14:17:38.572 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:38.720 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@ea7461f
+2020.06.24 14:17:38.720 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:38.721 INFO  Model.MyModel - Starting position is at: [0, 8]
+2020.06.24 14:17:38.721 INFO  Model.MyModel - Goal position is at: [8, 8]
+2020.06.24 14:17:38.721 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:38.874 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@1c10bce8
+2020.06.24 14:17:38.875 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:38.875 INFO  Model.MyModel - Starting position is at: [8, 4]
+2020.06.24 14:17:38.875 INFO  Model.MyModel - Goal position is at: [4, 8]
+2020.06.24 14:17:38.876 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:39.038 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@ff467b7
+2020.06.24 14:17:39.038 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:39.038 INFO  Model.MyModel - Starting position is at: [8, 0]
+2020.06.24 14:17:39.038 INFO  Model.MyModel - Goal position is at: [6, 8]
+2020.06.24 14:17:39.039 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:39.191 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@7b444f54
+2020.06.24 14:17:39.191 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:39.191 INFO  Model.MyModel - Starting position is at: [0, 2]
+2020.06.24 14:17:39.191 INFO  Model.MyModel - Goal position is at: [8, 0]
+2020.06.24 14:17:39.191 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:39.338 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@7d2a631b
+2020.06.24 14:17:39.338 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:39.338 INFO  Model.MyModel - Starting position is at: [0, 8]
+2020.06.24 14:17:39.339 INFO  Model.MyModel - Goal position is at: [2, 0]
+2020.06.24 14:17:39.339 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:39.504 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@f5a9560
+2020.06.24 14:17:39.504 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:39.504 INFO  Model.MyModel - Starting position is at: [8, 6]
+2020.06.24 14:17:39.504 INFO  Model.MyModel - Goal position is at: [6, 0]
+2020.06.24 14:17:39.505 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:39.644 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@6a169a85
+2020.06.24 14:17:39.646 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:17:39.646 INFO  Model.MyModel - Starting position is at: [8, 0]
+2020.06.24 14:17:39.646 INFO  Model.MyModel - Goal position is at: [0, 2]
+2020.06.24 14:17:39.646 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:17:45.285 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:45.285 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:45.285 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:17:45.679 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:45.679 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:45.680 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:17:45.840 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:45.841 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:45.841 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:17:46.018 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:46.018 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:46.019 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:17:46.173 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:46.173 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:46.173 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:17:46.338 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:46.339 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:46.339 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:17:46.472 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:46.472 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:46.472 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:17:46.621 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:46.621 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:46.621 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:17:46.778 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:46.778 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:46.778 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:17:46.939 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:46.939 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:46.939 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:17:47.087 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:47.087 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:47.087 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:17:47.239 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:47.240 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:47.240 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:17:47.385 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:47.386 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:47.386 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:17:47.537 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:47.538 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:47.538 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:17:47.672 INFO  Model.MyModel - Solution length is 8
+2020.06.24 14:17:47.672 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:17:47.672 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:19:51.275 INFO  Model.MyModel - GENERATING server is being closed.
+2020.06.24 14:19:51.385 INFO  Model.MyModel - SOLVING server is being closed.
+2020.06.24 14:24:35.629 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@d9fd9ec
+2020.06.24 14:24:35.632 INFO  Model.MyModel - A maze with 4 rows and 4 columns was created
+2020.06.24 14:24:35.633 INFO  Model.MyModel - Starting position is at: [4, 6]
+2020.06.24 14:24:35.633 INFO  Model.MyModel - Goal position is at: [0, 2]
+2020.06.24 14:25:20.698 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:25:27.829 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@51be8920
+2020.06.24 14:25:27.829 INFO  Model.MyModel - A maze with 7 rows and 3 columns was created
+2020.06.24 14:25:27.830 INFO  Model.MyModel - Starting position is at: [0, 4]
+2020.06.24 14:25:27.830 INFO  Model.MyModel - Goal position is at: [2, 0]
+2020.06.24 14:25:27.830 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:25:58.771 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:26:04.787 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@30b3a75a
+2020.06.24 14:26:04.788 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:26:04.788 INFO  Model.MyModel - Starting position is at: [0, 6]
+2020.06.24 14:26:04.788 INFO  Model.MyModel - Goal position is at: [8, 2]
+2020.06.24 14:26:11.900 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:26:21.504 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:27:52.418 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@1c9a6b70
+2020.06.24 14:27:52.422 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:27:52.422 INFO  Model.MyModel - Starting position is at: [8, 8]
+2020.06.24 14:27:52.422 INFO  Model.MyModel - Goal position is at: [0, 0]
+2020.06.24 14:27:52.423 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:28:01.506 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:28:10.447 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:33:01.437 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@30f09bc5
+2020.06.24 14:33:01.441 INFO  Model.MyModel - A maze with 5 rows and 5 columns was created
+2020.06.24 14:33:01.441 INFO  Model.MyModel - Starting position is at: [4, 8]
+2020.06.24 14:33:01.441 INFO  Model.MyModel - Goal position is at: [6, 0]
+2020.06.24 14:33:01.442 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:33:14.289 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:33:20.458 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@6b34a8e6
+2020.06.24 14:33:20.458 INFO  Model.MyModel - A maze with 3 rows and 3 columns was created
+2020.06.24 14:33:20.458 INFO  Model.MyModel - Starting position is at: [4, 4]
+2020.06.24 14:33:20.458 INFO  Model.MyModel - Goal position is at: [0, 0]
+2020.06.24 14:33:20.459 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:33:24.367 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:33:31.757 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:33:50.065 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:33:55.449 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:34:34.036 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@56d4ede8
+2020.06.24 14:34:34.039 INFO  Model.MyModel - A maze with 3 rows and 3 columns was created
+2020.06.24 14:34:34.040 INFO  Model.MyModel - Starting position is at: [2, 0]
+2020.06.24 14:34:34.040 INFO  Model.MyModel - Goal position is at: [0, 4]
+2020.06.24 14:34:34.040 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:34:38.106 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:34:43.720 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:35:47.861 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@bd49a28
+2020.06.24 14:35:47.865 INFO  Model.MyModel - A maze with 3 rows and 3 columns was created
+2020.06.24 14:35:47.866 INFO  Model.MyModel - Starting position is at: [4, 2]
+2020.06.24 14:35:47.866 INFO  Model.MyModel - Goal position is at: [0, 0]
+2020.06.24 14:35:47.867 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:35:51.304 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:35:56.088 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:37:27.883 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@45f476c9
+2020.06.24 14:37:27.887 INFO  Model.MyModel - A maze with 3 rows and 3 columns was created
+2020.06.24 14:37:27.888 INFO  Model.MyModel - Starting position is at: [2, 0]
+2020.06.24 14:37:27.888 INFO  Model.MyModel - Goal position is at: [0, 4]
+2020.06.24 14:37:27.888 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:37:47.426 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@7dee9d8c
+2020.06.24 14:37:47.426 INFO  Model.MyModel - A maze with 3 rows and 3 columns was created
+2020.06.24 14:37:47.427 INFO  Model.MyModel - Starting position is at: [4, 0]
+2020.06.24 14:37:47.427 INFO  Model.MyModel - Goal position is at: [0, 4]
+2020.06.24 14:37:47.427 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:37:51.081 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:39:45.570 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@6c065f72
+2020.06.24 14:39:45.573 INFO  Model.MyModel - A maze with 3 rows and 3 columns was created
+2020.06.24 14:39:45.573 INFO  Model.MyModel - Starting position is at: [0, 4]
+2020.06.24 14:39:45.574 INFO  Model.MyModel - Goal position is at: [4, 0]
+2020.06.24 14:39:45.574 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:39:52.352 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:40:09.414 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:42:12.722 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@4c74464a
+2020.06.24 14:42:12.725 INFO  Model.MyModel - A maze with 3 rows and 3 columns was created
+2020.06.24 14:42:12.726 INFO  Model.MyModel - Starting position is at: [0, 4]
+2020.06.24 14:42:12.726 INFO  Model.MyModel - Goal position is at: [4, 0]
+2020.06.24 14:42:12.726 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:42:21.858 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:42:34.118 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:43:24.607 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@22e12ae
+2020.06.24 14:43:24.612 INFO  Model.MyModel - A maze with 3 rows and 3 columns was created
+2020.06.24 14:43:24.612 INFO  Model.MyModel - Starting position is at: [4, 0]
+2020.06.24 14:43:24.613 INFO  Model.MyModel - Goal position is at: [0, 2]
+2020.06.24 14:43:24.613 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:43:28.406 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:43:33.276 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:43:38.891 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:43:43.041 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:43:45.227 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@d63c9f1
+2020.06.24 14:43:45.227 INFO  Model.MyModel - A maze with 3 rows and 3 columns was created
+2020.06.24 14:43:45.227 INFO  Model.MyModel - Starting position is at: [2, 4]
+2020.06.24 14:43:45.228 INFO  Model.MyModel - Goal position is at: [0, 2]
+2020.06.24 14:43:45.228 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:43:49.922 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:43:54.872 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:45:11.742 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@6c065f72
+2020.06.24 14:45:11.745 INFO  Model.MyModel - A maze with 500 rows and 500 columns was created
+2020.06.24 14:45:11.746 INFO  Model.MyModel - Starting position is at: [0, 336]
+2020.06.24 14:45:11.746 INFO  Model.MyModel - Goal position is at: [998, 568]
+2020.06.24 14:45:11.747 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:45:54.437 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@24abf821
+2020.06.24 14:45:54.437 INFO  Model.MyModel - A maze with 12 rows and 12 columns was created
+2020.06.24 14:45:54.438 INFO  Model.MyModel - Starting position is at: [22, 2]
+2020.06.24 14:45:54.438 INFO  Model.MyModel - Goal position is at: [0, 20]
+2020.06.24 14:45:54.438 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:46:00.058 INFO  Model.MyModel - Solution length is 25
+2020.06.24 14:46:00.059 INFO  Model.MyModel - Solving algorithm is BestFirstSearch
+2020.06.24 14:46:00.059 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5401.
+2020.06.24 14:46:24.057 INFO  Model.MyModel - Client has solved the maze.
+2020.06.24 14:46:25.902 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@67ffda00
+2020.06.24 14:46:25.902 INFO  Model.MyModel - A maze with 12 rows and 12 columns was created
+2020.06.24 14:46:25.903 INFO  Model.MyModel - Starting position is at: [0, 22]
+2020.06.24 14:46:25.903 INFO  Model.MyModel - Goal position is at: [22, 8]
+2020.06.24 14:46:25.904 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.
+2020.06.24 14:47:04.949 INFO  Model.MyModel - GENERATING server is being closed.
+2020.06.24 14:47:05.051 INFO  Model.MyModel - SOLVING server is being closed.
+2020.06.24 14:48:16.987 INFO  Model.MyModel - GENERATING server is being closed.
+2020.06.24 14:48:17.096 INFO  Model.MyModel - SOLVING server is being closed.
+2020.06.24 14:48:59.352 INFO  Model.MyModel - Generating maze using algorithms.mazeGenerators.MyMazeGenerator@37c4bcdf
+2020.06.24 14:48:59.357 INFO  Model.MyModel - A maze with 4 rows and 4 columns was created
+2020.06.24 14:48:59.357 INFO  Model.MyModel - Starting position is at: [6, 6]
+2020.06.24 14:48:59.357 INFO  Model.MyModel - Goal position is at: [0, 4]
+2020.06.24 14:48:59.358 INFO  Model.MyModel - ClientLAPTOP-GJJV545E/192.168.1.19 is connected to the server at port 5400.

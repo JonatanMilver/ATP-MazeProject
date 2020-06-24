@@ -8,11 +8,9 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -23,7 +21,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
 public class MyViewController extends AView implements Initializable {
@@ -39,11 +36,9 @@ public class MyViewController extends AView implements Initializable {
     private ImageView logoImage;
 
 
-    public void handleExitButton(){
-        Platform.exit();
-        System.exit(0);
-    }
-
+    /**
+     * Helps to get a specific stage.
+     */
     private void getStage(){
         if(exitButton1 != null){
             stage =(Stage) exitButton1.getScene().getWindow();
@@ -52,6 +47,10 @@ public class MyViewController extends AView implements Initializable {
             stage =(Stage) mainWindowExitButton.getScene().getWindow();
         }
     }
+
+    /**
+     * Handles new button pressed from the MyView(Start page)
+     */
     @Override
     public void handleNewButton() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("NewPage.fxml"));
@@ -78,6 +77,9 @@ public class MyViewController extends AView implements Initializable {
 
     }
 
+    /**
+     * Handles LOAD button pressed from Start page.
+     */
     @Override
     public void handleLoadButton() {
         FileChooser fileChooser = new FileChooser();

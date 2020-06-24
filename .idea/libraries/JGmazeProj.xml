@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="JGmazeProj">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../ATP-Project-PartB/out/artifacts/JGmazeProj_jar/JGmazeProj.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JGmazeProj.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
