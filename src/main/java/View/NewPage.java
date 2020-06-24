@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXTextArea;
 import javafx.animation.PathTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -18,7 +17,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -44,7 +42,6 @@ public class NewPage extends AView implements Initializable {
     public TextField colText;
     public Button generateButton;
     public Button showSolution;
-
     public MazeDisplayer mazeDisplayer;
     public AnchorPane bPane;
     public AnchorPane anchorPane;
@@ -59,7 +56,12 @@ public class NewPage extends AView implements Initializable {
     private int storyNumber = 1;
     @FXML
     private Slider volumeSlider;
-
+    @FXML
+    private Label chooseStoryLabel;
+    @FXML
+    private Label currentlyPlayingLabel;
+    @FXML
+    private Label musicVolumeLabel;
     public Label player_row_label = new Label();
     public Label player_col_label = new Label();
     public StringProperty playerCurrentRow = new SimpleStringProperty();
@@ -73,25 +75,23 @@ public class NewPage extends AView implements Initializable {
     @FXML
     private AnchorPane menuAnchor;
     @FXML
-    private MenuBar menuBar;
-    @FXML
-    private AnchorPane menuBarAnchorPane;
     private MediaPlayer mp;
-    @FXML
-    private BorderPane menuBarBorderPane;
+    private boolean switchedStory = false;
 
 
-    public void handleExitButton(){
-        Platform.exit();
-        System.exit(0);
-    }
 
+    /**
+     * Being used while pressing new Game button from NEW PAGE.
+     */
     @Override
     public void handleNewButton() {
         bPane.setVisible(false);
         showSolution.setVisible(false);
     }
 
+    /**
+     * Being used while pressing LOAD button from NEW PAGE.
+     */
     public void loadGame() {
         FileChooser fileChooser = new FileChooser();
         configureFileChooser(fileChooser);
@@ -101,6 +101,10 @@ public class NewPage extends AView implements Initializable {
         }
     }
 
+    /**
+     * Zooms the maze itself in and out using the scroll of the mouse.
+     * While scrolling, CTRL button should be DOWN.
+     */
     public void zoomInAndOut() {
         bPane.setOnScroll(new EventHandler<ScrollEvent>() {
             @Override
@@ -121,8 +125,11 @@ public class NewPage extends AView implements Initializable {
     }
 
 
-
-
+    /**
+     * This method is being called while pressing the Generate Button.
+     * It updates the viewModel(with drawmaze) that the user asked to generate a maze.
+     * @param mouseEvent MouseEvent
+     */
     public void changeToMazeScene(MouseEvent mouseEvent) {
         if (mouseEvent.getSource() == generateButton){
             String rows = rowsText.getText();
@@ -132,6 +139,11 @@ public class NewPage extends AView implements Initializable {
         }
     }
 
+    /**
+     * Updates the view model that a user asked to generate a maze with rowsXcolumns.
+     * @param rows String
+     * @param columns String
+     */
     public void drawmaze(String rows, String columns) {
         viewModel.generateMaze(rows,columns);
     }
@@ -139,8 +151,6 @@ public class NewPage extends AView implements Initializable {
 
     public void drawLoadedMaze(){
         if(viewModel.getMaze() == null) {
-//            Alert mazeNotLoaded = new Alert(Alert.AlertType.WARNING, "Maze not found!");
-//            mazeNotLoaded.show();
             showAlert(Alert.AlertType.WARNING, "Maze not found!");
             return;
         }
@@ -151,7 +161,7 @@ public class NewPage extends AView implements Initializable {
 
 
     /**
-     * Retreives the maze from the file. Sends it to the draw function
+     * Receives the maze from the file. Sends it to the draw function
      * @param mazeFile File.
      */
     public void showLoadedMaze(File mazeFile){
@@ -159,14 +169,19 @@ public class NewPage extends AView implements Initializable {
 
     }
 
+    /**
+     * Sets background and images according to chosen story.
+     */
     private void setGameAccordingToStory(){
         if(storyNumber == 1) {
             bPane.setStyle("-fx-background-image: url('Pictures/parket.jpg')");
             mazeDisplayer.chooseStorytoFillMaze(1);
+            switchedStory = true;
         }
         else if(storyNumber == 2) {
             bPane.setStyle("-fx-background-image: url('Pictures/grass.jpg')");
             mazeDisplayer.chooseStorytoFillMaze(2);
+            switchedStory = true;
         }
     }
 
@@ -184,6 +199,7 @@ public class NewPage extends AView implements Initializable {
                 mazeDisplayer.setDrawSolution(false);
                 showSolution.setText("Show Solution");
                 showSolution.setVisible(true);
+                switchedStory = false;
                 break;
             case "SOLVE":
                 if (!mazeDisplayer.isAskedToShowSolution()) {
@@ -208,10 +224,20 @@ public class NewPage extends AView implements Initializable {
                     Button end = (Button) alert.getDialogPane().lookupButton(WooHoo);
 
                     Media winningVideo = null;
-                    if (storyNumber == 1)
-                        winningVideo = new Media(new File("resources/Videos/JordanSolve.mp4").toURI().toString());
-                    else if (storyNumber == 2)
-                        winningVideo = new Media(new File("resources/Videos/WhiskeySolve.mp4").toURI().toString());
+                    if (storyNumber == 1 ) {
+                        if(!switchedStory){
+                            winningVideo = new Media(new File("resources/Videos/JordanSolve.mp4").toURI().toString());
+                        }
+                        else
+                            winningVideo = new Media(new File("resources/Videos/WhiskeySolve.mp4").toURI().toString());
+                    }
+                    else if (storyNumber == 2) {
+                        if(!switchedStory)
+                            winningVideo = new Media(new File("resources/Videos/WhiskeySolve.mp4").toURI().toString());
+                        else
+                            winningVideo = new Media(new File("resources/Videos/JordanSolve.mp4").toURI().toString());
+
+                    }
                     MediaPlayer mpWinning = new MediaPlayer(winningVideo);
 
                     MediaView mv = new MediaView(mpWinning);
@@ -241,6 +267,7 @@ public class NewPage extends AView implements Initializable {
                     mpWinning.play();
                     mp.setVolume(0);
                     alert.showAndWait();
+                    switchedStory = false;
                     restartMaze();
                 }
                 break;
@@ -249,6 +276,7 @@ public class NewPage extends AView implements Initializable {
                 setGameAccordingToStory();
                 mazeDisplayer.setVisible(true);
                 drawLoadedMaze();
+                switchedStory = false;
                 showSolution.setVisible(true);
                 break;
             case "INVALIDINPUT":
@@ -260,10 +288,16 @@ public class NewPage extends AView implements Initializable {
         }
     }
 
+    /**
+     * Updates the viewModel to restart a maze.
+     */
     private void restartMaze() {
         viewModel.restartMaze();
     }
 
+    /**
+     * Sets Listeners while resizing the window.
+     */
     private void listenToResize(){
         anchorPane.widthProperty().addListener((obs, oldVal, newVal) -> {
             bPane.setMinWidth(anchorPane.getWidth());
@@ -295,6 +329,32 @@ public class NewPage extends AView implements Initializable {
             if(showSolution.getText().equals("Hide Solution"))
                 mazeDisplayer.drawSolution(viewModel.getSolution().getSolutionPath());
         });
+        menuAnchor.heightProperty().addListener((obs,oldVal, newVal)->{
+            if(newVal.doubleValue() < oldVal.doubleValue()) {
+                if(generateButton.getLayoutY() > 120) {
+                    generateButton.setLayoutY(generateButton.getLayoutY() - 5);
+                    chooseStoryLabel.setLayoutY(chooseStoryLabel.getLayoutY() - 5);
+                    showSolution.setLayoutY(showSolution.getLayoutY() - 5);
+                    story.setLayoutY(story.getLayoutY() - 5);
+                    musicVolumeLabel.setLayoutY(musicVolumeLabel.getLayoutY() - 5);
+                    volumeSlider.setLayoutY(volumeSlider.getLayoutY() - 5);
+                    currentlyPlayingLabel.setLayoutY(currentlyPlayingLabel.getLayoutY() - 5);
+                    currentSong.setLayoutY(currentSong.getLayoutY() - 5);
+                }
+            }
+            else if(newVal.doubleValue() > oldVal.doubleValue()){
+                if(story.getLayoutY() < 260) {
+                    generateButton.setLayoutY(generateButton.getLayoutY() + 5);
+                    chooseStoryLabel.setLayoutY(chooseStoryLabel.getLayoutY() + 5);
+                    showSolution.setLayoutY(showSolution.getLayoutY() + 5);
+                    story.setLayoutY(story.getLayoutY() + 5);
+                    musicVolumeLabel.setLayoutY(musicVolumeLabel.getLayoutY() + 5);
+                    volumeSlider.setLayoutY(volumeSlider.getLayoutY() + 5);
+                    currentlyPlayingLabel.setLayoutY(currentlyPlayingLabel.getLayoutY() + 5);
+                    currentSong.setLayoutY(currentSong.getLayoutY() + 5);
+                }
+            }
+        });
     }
 
 
@@ -315,6 +375,7 @@ public class NewPage extends AView implements Initializable {
         mazeDisplayer.setHeight(Screen.getPrimary().getBounds().getHeight()-30-100);
         zoomInAndOut();
         listenToResize();
+        bPane.toBack();
         volumeSlider.setMin(0);
         volumeSlider.setMax(1);
         volumeSlider.setValue(0.05);
@@ -355,6 +416,11 @@ public class NewPage extends AView implements Initializable {
         pathTransition.play();
     }
 
+    /**
+     * Switches between hints shown on the window.
+     * @param next String
+     * @param hintsList ArrayList<String>
+     */
     private void runHints(String next, ArrayList<String> hintsList) {
         hintsTextArea.setText(next);
         PauseTransition pause = new PauseTransition(Duration.seconds(10));
@@ -368,26 +434,41 @@ public class NewPage extends AView implements Initializable {
         pause.play();
     }
 
+    /**
+     * Updates the displayer that a player has changed his position.
+     * @param rowPosition int
+     * @param colPosition int
+     */
     public void set_player_position(int rowPosition , int colPosition){
         mazeDisplayer.set_player_position(rowPosition , colPosition);
         player_row_label.setText(String.valueOf(rowPosition));
         player_col_label.setText(String.valueOf(colPosition));
     }
 
+    /**
+     * Gets the story that the player have chosen.
+     * @param actionEvent ActionEvent
+     */
     public void choseStory(ActionEvent actionEvent){
         if(actionEvent.getSource() == michaelJordan || actionEvent.getSource() == whiskey){
             story.setText(((MenuItem)actionEvent.getSource()).getText());
         }
         if(actionEvent.getSource() == michaelJordan){
             storyNumber = 1;
+            switchedStory = true;
         }
         else if(actionEvent.getSource() == whiskey){
             storyNumber = 2;
+            switchedStory = true;
 
         }
         moveCheckLabel.setText(story.getText());
     }
 
+    /**
+     * Updates viewModel that player has tried to move at the maze.
+     * @param keyEvent KeyEvent
+     */
     public void keyPressed(KeyEvent keyEvent) {
         viewModel.moveCharacter(keyEvent);
         keyEvent.consume();
@@ -397,14 +478,19 @@ public class NewPage extends AView implements Initializable {
         mazeDisplayer.requestFocus();
     }
 
+    /**
+     * Updates ViewModel that a player has asked to see a solution.
+     */
     public void showSolution() {
         viewModel.solveMaze();
     }
 
 
-
-
-
+    /**
+     * Plays the background music.
+     * @param mediaFile String
+     * @param musicList ArrayList of String
+     */
     private void play(String mediaFile,ArrayList<String> musicList ){
         Media media = new Media(mediaFile);
         mp = new MediaPlayer(media);
@@ -425,6 +511,10 @@ public class NewPage extends AView implements Initializable {
         });
     }
 
+    /**
+     * Sets music volume according to the slider.
+     * @param mouseEvent MouseEvent
+     */
     public void listenToMusicVolume(MouseEvent mouseEvent) {
         mp.setVolume(volumeSlider.getValue());
     }
