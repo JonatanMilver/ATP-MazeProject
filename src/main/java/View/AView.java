@@ -2,6 +2,7 @@ package View;
 
 import ViewModel.MyViewModel;
 import algorithms.mazeGenerators.Maze;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,15 +18,18 @@ import java.util.Observer;
 public abstract class AView implements IView, Observer {
     protected Scene scene;
     protected Stage stage;
-//    protected MyViewModel viewModel = new MyViewModel();
     protected MyViewModel viewModel = MyViewModel.getInstance();
 
 
-//    public AView(Scene scene, Stage stage, MyViewModel viewModel) {
-//        this.scene = scene;
-//        this.stage = stage;
-//        this.viewModel = viewModel;
-//    }
+    /**
+     * Opens a new stage of sizes vXv1 with the title of stateTitle.
+     * Loads the fxmlFileName using FXMLLoader.
+     * @param fxmlFileName String
+     * @param stageTitle String
+     * @param v double
+     * @param v1 double
+     * @return
+     */
     public Stage openNewStage(String fxmlFileName, String stageTitle, double v, double v1){
         Stage newStage = new Stage();
         try {
@@ -41,9 +45,12 @@ public abstract class AView implements IView, Observer {
         return newStage;
     }
 
-    @Override
-    public void handleExitButton() {
-
+    /**
+    * Being used while quitting the app.
+    */
+    public void handleExitButton(){
+        Platform.exit();
+        System.exit(0);
     }
 
     @Override
@@ -56,6 +63,9 @@ public abstract class AView implements IView, Observer {
 
     }
 
+    /**
+     * @param fileChooser FileChooser
+     */
     protected static void configureFileChooser(final FileChooser fileChooser){
         fileChooser.setTitle("Choose a maze");
         fileChooser.setInitialDirectory(
@@ -63,6 +73,11 @@ public abstract class AView implements IView, Observer {
         );
     }
 
+    /**
+     * Checks whether a given file contains a maze.
+     * @param file File
+     * @return boolean
+     */
     public boolean checkIfFileIsMaze(File file){
         if (file == null){
             showAlert(Alert.AlertType.WARNING , "file is Null!");
@@ -77,11 +92,19 @@ public abstract class AView implements IView, Observer {
         return true;
     }
 
+    /**
+     * Opens an alert and shows it.
+     * @param alertType Alert.AlertType
+     * @param s String
+     */
     public void showAlert(Alert.AlertType alertType , String s){
         Alert alert = new Alert(alertType, s);
         alert.show();
     }
 
+    /**
+     *  Handles save logic while pressing "SAVE".
+     */
     @Override
     public void handleSaveButton() {
         FileChooser fileChooser = new FileChooser();
@@ -98,12 +121,16 @@ public abstract class AView implements IView, Observer {
 
         File file = fileChooser.showSaveDialog(stage);
 
-        //need to check if person closes (X) the file chooser!!!
         if(file != null) {
             writeMazeToFile(mazeToSave, file.getPath());
         }
     }
 
+    /**
+     * Saves given maze to a file "FILENAME.maze"
+     * @param mazeFromClient Maze
+     * @param path String
+     */
     private void writeMazeToFile(Maze mazeFromClient , String path) {
         try {
             FileOutputStream file = new FileOutputStream(path);
@@ -117,6 +144,9 @@ public abstract class AView implements IView, Observer {
         }
     }
 
+    /**
+     * Handles "ABOUT US" logic.
+     */
     @Override
     public void handleAboutButton() {
         Stage aboutStage = openNewStage("AboutUs1.fxml","About",707,619);
@@ -128,6 +158,9 @@ public abstract class AView implements IView, Observer {
         aboutStage.show();
     }
 
+    /**
+     * handle "Properties" logic.
+     */
     @Override
     public void handlePropertiesButton() {
         Stage propertiesStage = openNewStage("Properties.fxml", "Properties", 535,299);
@@ -139,6 +172,9 @@ public abstract class AView implements IView, Observer {
         propertiesStage.show();
     }
 
+    /**
+     * Handles "Help" logic.
+     */
     @Override
     public void handleHelpButton() {
         String hints =

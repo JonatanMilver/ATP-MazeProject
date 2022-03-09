@@ -1,6 +1,6 @@
 AnchorPane{
     -fx-font-family: "Microsoft Sans Serif";
-    -fx-text-fill: white;
+    -fx-text-fill: #C0C0C0;
     -fx-background-image: url('../Pictures/rafif-prawira-SgTLuX6t8Yo-unsplash.jpg');
     -fx-background-repeat: stretch;
     -fx-background-size: cover;
@@ -9,17 +9,17 @@ AnchorPane{
 
 #title{
     -fx-font-size: 26px;
-    -fx-text-fill: white;
+    -fx-text-fill: #C0C0C0;
 }
 
 .subTitle{
     -fx-font-size: 21px;
-    -fx-text-fill: white;
+    -fx-text-fill: #C0C0C0;
 }
 
 .name{
     -fx-font-size: 20px;
-    -fx-text-fill: white;
+    -fx-text-fill: #C0C0C0;
 }
 
 .name:hover{
@@ -34,5 +34,5 @@ ImageView:hover{
 
 JFXTextArea{
     -fx-font-size: 19px;
-    -fx-text-fill: white;
+    -fx-text-fill: #C0C0C0;
 }

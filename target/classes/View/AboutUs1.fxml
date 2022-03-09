@@ -2,16 +2,29 @@
 
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="707.0" stylesheets="@aboutUsStyling.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="title" layoutX="228.0" layoutY="32.0" prefHeight="31.0" prefWidth="144.0" text="ABOUT US" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="320.0" />
-      <Label layoutX="45.0" layoutY="78.0" styleClass="subTitle" text="OUR GOAL" AnchorPane.bottomAnchor="516.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="551.0" AnchorPane.topAnchor="78.0" />
-      <Label layoutX="45.0" layoutY="179.0" styleClass="subTitle" text="THE ALGORITHMS" AnchorPane.bottomAnchor="415.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="475.0" AnchorPane.topAnchor="179.0" />
-      <Label layoutX="45.0" layoutY="357.0" styleClass="subTitle" text="OUR TEAM" AnchorPane.bottomAnchor="237.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="551.0" AnchorPane.topAnchor="357.0" />
+      <Label fx:id="title" layoutX="228.0" layoutY="32.0" prefHeight="31.0" prefWidth="144.0" text="ABOUT US" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="320.0">
+         <effect>
+            <DropShadow blurType="TWO_PASS_BOX" height="46.7" radius="18.4025" width="28.91" />
+         </effect></Label>
+      <Label layoutX="45.0" layoutY="78.0" styleClass="subTitle" text="OUR GOAL" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="551.0">
+         <effect>
+            <DropShadow />
+         </effect></Label>
+      <Label layoutX="45.0" layoutY="179.0" styleClass="subTitle" text="THE ALGORITHMS" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="475.0">
+         <effect>
+            <DropShadow />
+         </effect></Label>
+      <Label layoutX="45.0" layoutY="357.0" styleClass="subTitle" text="OUR TEAM" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="551.0">
+         <effect>
+            <DropShadow />
+         </effect></Label>
       <ImageView fitHeight="94.0" fitWidth="134.0" layoutX="45.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="139.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="528.0" AnchorPane.topAnchor="386.0">
          <image>
             <Image url="@../Pictures/JonatanMilver.png" />
@@ -22,7 +35,7 @@
          </image></ImageView>
       <Label layoutX="45.0" layoutY="479.0" prefHeight="35.0" prefWidth="85.0" styleClass="name" text="Jonatan" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="575.0" />
       <Label layoutX="259.0" layoutY="485.0" prefHeight="25.0" prefWidth="57.0" styleClass="name" text="Guy" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="350.0" />
-      <JFXTextArea editable="false" focusColor="#405aa800" layoutX="45.0" layoutY="103.0" prefHeight="76.0" prefWidth="650.0" text="We want to challenge you by solving our mazes.However, whenever you need some help or hints you can get it by one click." unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="12.0" />
+      <JFXTextArea editable="false" focusColor="#405aa800" layoutX="45.0" layoutY="103.0" prefHeight="76.0" prefWidth="650.0" text="We want to challenge you by solving our mazes.&#10;However, whenever you need some help or hints you can get it by one click." unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="12.0" />
       <JFXTextArea editable="false" focusColor="#405aa800" layoutX="45.0" layoutY="198.0" prefHeight="163.0" prefWidth="650.0" text="The algorithm we use in order to make an interesting and challenging &#10;maze is the common Depth First Search -  graph based algorithm.&#10;However, our solving logic uses some more algorithms in order to solve our mazes.&#10;We use Breadth First Search, Best First Search and Depth First Search, all graph based.&#10;" unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="12.0" />
       <JFXTextArea editable="false" focusColor="#405aa800" layoutX="45.0" layoutY="502.0" prefHeight="103.0" prefWidth="650.0" text="Second year students at the department of Information Systems Engineering.&#10;The developers of this project  at the Advanced Topics in Programming course of the&#10;ISE department." unFocusColor="#4d4d4d00" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="12.0" />
    </children>

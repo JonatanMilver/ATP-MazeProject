@@ -31,6 +31,10 @@ public class Properties extends AView {
     private Button apply;
 
 
+    /**
+     * General function that checking every actionEvent and sets the configurations according to the event.
+     * @param actionEvent ActionEvent
+     */
     public void mouseClicked(ActionEvent actionEvent) {
         if(actionEvent.getSource() == MyMazeGenerator || actionEvent.getSource() == SimpleMazeGenerator || actionEvent.getSource() == EmptyMazeGenerator){
             mazeAlgorithm.setText(((MenuItem)actionEvent.getSource()).getText());
@@ -41,13 +45,11 @@ public class Properties extends AView {
         if(actionEvent.getSource() == cancel){
             Stage stage = (Stage) cancel.getScene().getWindow();
             stage.close();
-            System.out.println("Pressed CANCEL");
         }
         if(actionEvent.getSource() == apply){
             Server.setConfigurations("GeneratingAlgorithm",mazeAlgorithm.getText());
             Server.setConfigurations("SearchingAlgorithm", solvingAlgorithm.getText());
             ((Stage)apply.getScene().getWindow()).close();
-            System.out.println("Pressed APPLY");
         }
 
     }

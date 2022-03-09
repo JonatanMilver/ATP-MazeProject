@@ -32,7 +32,6 @@ public class Main extends Application {
 
 
 
-        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         primaryStage.setTitle("Let's Maze");
         primaryStage.setScene(new Scene(root, 501, 404));
         primaryStage.setResizable(true);
